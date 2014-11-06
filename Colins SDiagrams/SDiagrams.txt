@@ -1,0 +1,43 @@
+title Login
+User->Welcome Screen Boundary: View
+User->Welcome Screen Boundary: Press Dismiss Button
+Welcome Screen Boundary-> Server Control:
+Server Control->Login Page Boundary:Create
+User->Login Page Boundary: View
+User->Login Page Boundary: User enters WLU Account Info
+loop
+alt Authentication Succeeded
+Login Page Boundary-> OAuth Control:Authentication Request
+User-> Home Page Boundary:View
+note right of Home Page Boundary:Exit
+else Authentication Failed
+OAuth Control-> Login Page Boundary :Authentication Failed
+
+title Check Notifications
+User->Home Screen Boundary: View
+Home Screen Boundary->Server Control:Request Notification Count
+Server Control->Header Boundary:Display Notification Count
+User->Header Boundary: View
+User->Header Boundary: Press Notification Button
+Header Boundary->Server Control:Send Request
+Server Control->Notification Boundary:Create
+Server Control->Notification Boundary:Show "Questions for you" Notifications
+Server Control->Notification Boundary:Show "Answers for you" Notifications
+User->Notification Boundary: Select Notification
+Notification Boundary->Question Control: Request Notification
+Question Control->View Question Page Boundary:Create
+User->View Question Page Boundary:View
+note right of View Question Page Boundary:Exit
+
+title Report Question
+User->View Question Page Boundary:View
+User->View Question Page Boundary:Press Report Button
+View Question Page Boundary->Question Control:Report Request
+Question Control->Popup Boundary:Create
+User->Popup Boundary:View
+User->Popup Boundary:Select Reason
+Popup Boundary->Server Control:Request Administrator Alert with Reason
+Server Control->Administrator:Send Email
+Server Control->Popup Boundary:Display Acknowledgement of Request
+User->Popup Boundary:View
+note right of Popup Boundary:Exit
