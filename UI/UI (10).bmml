@@ -1,0 +1,65 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1711" measuredH="1076" mockupW="297" mockupH="510">
+  <controls>
+    <control controlID="269" controlTypeID="__group__" x="1429" y="566" w="282" h="510" measuredW="282" measuredH="510" zOrder="0" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="0" y="0" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="0" locked="false" isInGroup="269"/>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="29" y="100" w="225" h="27" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="269"/>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::PointyButton" x="29" y="100" w="-1" h="-1" measuredW="37" measuredH="27" zOrder="2" locked="false" isInGroup="269">
+          <controlProperties>
+            <direction>center</direction>
+            <icon>HomeMobileIcon%7Cxsmall</icon>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::PointyButton" x="180" y="100" w="-1" h="-1" measuredW="37" measuredH="27" zOrder="3" locked="false" isInGroup="269">
+          <controlProperties>
+            <color>16777215</color>
+            <direction>center</direction>
+            <icon>Number2Icon%7Cxsmall</icon>
+            <state>up</state>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::PointyButton" x="217" y="100" w="-1" h="-1" measuredW="37" measuredH="27" zOrder="4" locked="false" isInGroup="269">
+          <controlProperties>
+            <direction>center</direction>
+            <icon>ContactIcon%7Cxsmall</icon>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::SubTitle" x="73" y="100" w="99" h="-1" measuredW="66" measuredH="33" zOrder="5" locked="false" isInGroup="269">
+          <controlProperties>
+            <text>Reply</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Button" x="44" y="366" w="194" h="24" measuredW="54" measuredH="27" zOrder="6" locked="false" isInGroup="269">
+          <controlProperties>
+            <text>Okay</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::FormattingToolbar" x="44" y="327" w="194" h="-1" measuredW="270" measuredH="29" zOrder="7" locked="false" isInGroup="269"/>
+        <control controlID="8" controlTypeID="com.balsamiq.mockups::TextArea" x="44" y="174" w="194" h="155" measuredW="200" measuredH="140" zOrder="8" locked="false" isInGroup="269">
+          <controlProperties>
+            <text>Description</text>
+          </controlProperties>
+        </control>
+        <control controlID="9" controlTypeID="com.balsamiq.mockups::TextInput" x="44" y="142" w="194" h="-1" measuredW="40" measuredH="27" zOrder="9" locked="false" isInGroup="269">
+          <controlProperties>
+            <state>disabled</state>
+            <text>Title</text>
+          </controlProperties>
+        </control>
+        <control controlID="10" controlTypeID="com.balsamiq.mockups::Link" x="125" y="405" w="-1" h="-1" measuredW="31" measuredH="21" zOrder="10" locked="false" isInGroup="269">
+          <controlProperties>
+            <text>Help</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="339" controlTypeID="com.balsamiq.mockups::CallOut" x="1414" y="566" w="-1" h="-1" measuredW="44" measuredH="43" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>10</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
