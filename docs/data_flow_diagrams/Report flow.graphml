@@ -215,7 +215,6 @@ Id<y:LabelModel>
       </data>
     </edge>
     <edge id="e5" source="n4" target="n3">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="11.0" tx="-21.75" ty="12.5"/>
