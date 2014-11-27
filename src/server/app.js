@@ -33,7 +33,6 @@
 
 // Imports
 var restify = require('restify');
-var restifyRoutes = require('restify-routes');
 var mongoose = require('mongoose');
 
 var path = require('path')
