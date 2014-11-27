@@ -2,35 +2,21 @@
 
   
 
-	<div class="col col-80 col-offset-10"><button class="button button-full button-positive" ui-sref="post">Ask Question</button></div>
-    <div class="col col-80 col-offset-10"><button class="button button-full button-positive"ui-sref="topiclist">  View Question</button></div>
 
-
-
-   
-
+<div class="col col-80 col-offset-10"><button class="button button-full button-positive" ui-sref="post">Ask Question</button></div>
+<div class="col col-80 col-offset-10"><button class="button button-full button-positive"ui-sref="topiclist">  View Question</button></div>
 
 <div class="list">
 <div class="item item-divider">
     Select A Catagory
   </div>
-  
-
-  
-  
+    
 <div  ng-init="names=['Academic','Residence','Financial','Social','Misc']">
+  <button ng-click="display()">Gief Info</button>
   <ul>
-    <li ng-repeat="x in names">
-        <label class="item item-radio">
-    <input type="radio" name="group">
-    <div class="item-content" >
-     {{x}}
-    </div>
-    <i class="radio-icon ion-checkmark"></i>
-  </label>
-    </li>
+
+    <ion-radio  ng-repeat="x in names" ng-model="data.value" ng-value="$index">{{x}}</ion-radio>
+    
   </ul>
 </div>
 </div>
-
-

@@ -4,7 +4,7 @@
     .state('index', {
       url: '/',
       templateUrl: 'home.html',
-	  
+	     controller: "HomeController"
     })
 
 
@@ -68,13 +68,29 @@
 		// called asynchronously if an error occurs
 		// or server returns response with an error status.
 	  });
-	
-	
-	
- 
  
  });
   
+
+ app.controller('HomeController', function HomeController($scope, $http) {
+ 
+    $scope.doge = function() {
+      alert("Do something amazing!");
+    }
+
+    $scope.display = function() {
+     // console.log($scope.data);
+      console.log($scope.data);
+    }
+
+    $scope.data = {
+      value: 4
+    };
+
+   
+
+ });
+
   angular.module('mySuperApp', ['ionic'])
 .controller('PopupCtrl',function($scope, $ionicPopup, $timeout) {
 // Triggered on a button click, or some other target
