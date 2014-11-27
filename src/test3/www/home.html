@@ -3,7 +3,10 @@
   
 
 	<div class="col col-80 col-offset-10"><button class="button button-full button-positive" ui-sref="post">Ask Question</button></div>
-    <div class="col col-80 col-offset-10"><button class="button button-full button-positive"ui-sref="topiclist">  Reply Question</button></div>
+    <div class="col col-80 col-offset-10"><button class="button button-full button-positive"ui-sref="topiclist">  View Question</button></div>
+
+
+
    
 
 
@@ -12,17 +15,16 @@
     Select A Catagory
   </div>
   
+
   
   
-  
-<div ng-app="" ng-init="names=['Academic','Residence','Financial','Social','Misc']">
+<div  ng-init="names=['Academic','Residence','Financial','Social','Misc']">
   <ul>
     <li ng-repeat="x in names">
         <label class="item item-radio">
     <input type="radio" name="group">
-    <div class="item-content">
+    <div class="item-content" >
      {{x}}
-
     </div>
     <i class="radio-icon ion-checkmark"></i>
   </label>
@@ -30,3 +32,5 @@
   </ul>
 </div>
 </div>
+
+

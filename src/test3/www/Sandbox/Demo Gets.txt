@@ -1,0 +1,35 @@
+ app.controller('DemoControl', function DemoControl($scope, $http) {
+ 
+	
+	
+			$http.get('http://localhost:8080/submissions/questions').
+	  success(function(data, status, headers, config) {
+      $scope.names = data;
+	  }).
+	  error(function(data, status, headers, config) {
+		// called asynchronously if an error occurs
+		// or server returns response with an error status.
+	  });
+	
+	
+	
+ 
+ 
+ });
+
+--------------------------------------------------------------
+
+	.state('topiclist', {
+      url: '/topiclist',
+      templateUrl: 'topiclist.html',
+	  controller: "DemoControl"
+    })
+
+--------------------------------------------------------------
+<div class="list card" ng-controller="DemoControl">
+  <a href="#" class="item item-icon-left" ng-repeat="x in names">
+    <i class="icon ion-chatbubbles"></i>
+    {{ x.title + ', ' + x.postCount }}
+  </a>
+</div>
+

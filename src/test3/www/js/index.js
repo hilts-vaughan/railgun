@@ -3,7 +3,8 @@
     $stateProvider
     .state('index', {
       url: '/',
-      templateUrl: 'home.html'
+      templateUrl: 'home.html',
+	  
     })
 
 
@@ -29,7 +30,8 @@
 	
 	.state('topiclist', {
       url: '/topiclist',
-      templateUrl: 'topiclist.html'
+      templateUrl: 'topiclist.html',
+	  controller: "DemoControl"
     })
 	
 	.state('reply', {
@@ -45,10 +47,7 @@
     .state('profile', {
       url: '/profile',
       templateUrl: 'profile.html'
-    }
-
-
-    );
+    });
 
 
 
@@ -56,7 +55,25 @@
 
   });
 
-  
+
+ app.controller('DemoControl', function DemoControl($scope, $http) {
+ 
+	
+	
+			$http.get('http://localhost:8080/submissions/questions').
+	  success(function(data, status, headers, config) {
+      $scope.names = data;
+	  }).
+	  error(function(data, status, headers, config) {
+		// called asynchronously if an error occurs
+		// or server returns response with an error status.
+	  });
+	
+	
+	
+ 
+ 
+ });
   
   angular.module('mySuperApp', ['ionic'])
 .controller('PopupCtrl',function($scope, $ionicPopup, $timeout) {
@@ -84,19 +101,3 @@ $scope.show_Popup = function() {
 });
   
 
-
-angular.module('myApp')
-// Click to navigate
-// similar to <a href="#/partial"> but hash is not required, 
-// e.g. <div click-link="/partial">
-.directive('clickLink', ['$location', function($location) {
-    return {
-        link: function(scope, element, attrs) {
-            element.on('click', function() {
-                scope.$apply(function() {
-                    $location.path(attrs.clickLink);
-                });
-            });
-        }
-    }
-}]);
