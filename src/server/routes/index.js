@@ -13,7 +13,7 @@ module.exports = function(server) {
           list.push({
             "body": "42 doge",
             "title": "What is the answer to life and everything?",
-            "categoryId": 1,
+            "categoryId":  Math.floor((Math.random() * 3) + 0) ,
             "postCount": 9001
           })
       }

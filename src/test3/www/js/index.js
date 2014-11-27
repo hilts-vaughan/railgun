@@ -31,7 +31,7 @@
 	.state('topiclist', {
       url: '/topiclist',
       templateUrl: 'topiclist.html',
-	  controller: "DemoControl"
+	  controller: "TopicControl"
     })
 	
 	.state('reply', {
@@ -41,7 +41,8 @@
 	
 	.state('postlist', {
       url: '/postlist',
-      templateUrl: 'postlist.html'
+      templateUrl: 'postlist.html',
+	 controller: "PostControl"
     })
 
     .state('profile', {
@@ -56,8 +57,9 @@
   });
 
 
- app.controller('DemoControl', function DemoControl($scope, $http) {
- 
+
+
+ app.controller('TopicControl', function TopicControl($scope, $http) {
 	
 	
 			$http.get('http://localhost:8080/submissions/questions').
@@ -68,12 +70,20 @@
 		// called asynchronously if an error occurs
 		// or server returns response with an error status.
 	  });
-	
-	
-	
- 
- 
  });
+
+   app.controller('PostControl', function PostControl($scope, $http) {
+		$http.get('http://localhost:8080/submissions/questions/1').
+	  success(function(data, status, headers, config) {
+	  console.log(data);
+      $scope.names = data;
+	  }).
+	  error(function(data, status, headers, config) {
+		// called asynchronously if an error occurs
+		// or server returns response with an error status.
+	  });
+ }); 
+ 
   
   angular.module('mySuperApp', ['ionic'])
 .controller('PopupCtrl',function($scope, $ionicPopup, $timeout) {
