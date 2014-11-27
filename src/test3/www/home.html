@@ -1,93 +1,26 @@
-<ion-view title="Notify">
-  <ion-nav-buttons side="left">
-  </ion-nav-buttons>
+<!-- Ask/Reply Selection Section  -->
+
+	<div class="col col-80 col-offset-10"><button class="button button-full button-positive">  Ask Question</button></div>
+    <div class="col col-80 col-offset-10"><button class="button button-full button-positive">  Reply Question</button></div>
+   
 
 
-
- <ion-tabs class="tabs-icon-top tabs-dark">
-            <ion-tab title="Anime" icon="ion-ios7-monitor" on-select="selectPopular()">
-                <ion-content has-header="true" padding="false">              
-
-      <ion-list>
-        <div class="group" ng-repeat="group in groups">
-          
-          <ion-item class="item-stable"
-                    ng-click="toggleGroup(group)"
-                    ng-class="{active: isGroupShown(group)}">
-              <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
-            &nbsp;
-              {{group.name}}
-          </ion-item>
-
-          <div class="accordion-item" ng-repeat="anime in lib.anime.anime | filter: { status: group.status }"
-                    ng-show="isGroupShown(group)">
-
-            <div>              
-               <ng-anime ng-model="anime" ng-click="showAnime(anime.mal_id )" ></ng-anime>              
-            </div>
-          </div>
-        
-        </div>
-
-      </ion-list>
-    
-
-                </ion-content>
-            </ion-tab>
-
-            <ion-tab title="Manga" icon="ion-android-book"  on-select="selectPopular()" >
-                <ion-content has-header="true" padding="false">
-
-      <ion-list>
-        <div class="group" ng-repeat="group in groups">
-          
-          <ion-item class="item-stable"
-                    ng-click="toggleGroup(group)"
-                    ng-class="{active: isGroupShown(group)}">
-              <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
-            &nbsp;
-              {{group.name}}
-          </ion-item>
-
-          <div class="accordion-item" ng-repeat="anime in lib.manga.manga  | filter: { status: group.status }"
-                    ng-show="isGroupShown(group)">
-
-            <div>              
-               <ng-anime ng-model="anime" ng-click="showManga(anime.mal_id)" ></ng-anime>              
-            </div>
-          </div>
-        
-        </div>
-
-      </ion-list>
-    
-
-
-
-
-                </ion-content>
-            </ion-tab>
-        </ion-tabs>
-
-
-
-
-
-
-
-    <ion-list>
-
-
-
-
-
-
-
-
-   </ion-list>
-
-
-
-
-
-</ion-view>
+<div class="list">
+<div class="item item-divider">
+    Select A Catagory
+  </div>
+  <label class="item item-radio">
+    <input type="radio" name="group">
+    <div class="item-content">
+      Catagory 1
+    </div>
+    <i class="radio-icon ion-checkmark"></i>
+  </label>
+    <label class="item item-radio">
+    <input type="radio" name="group">
+    <div class="item-content">
+      Catagory 2
+    </div>
+    <i class="radio-icon ion-checkmark"></i>
+  </label>
+</div>

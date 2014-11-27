@@ -15,6 +15,7 @@
       <script src="cordova.js"></script>
       <!-- your app's js -->
       <script src="js/app.js"></script>
+	  <script src="js/index.js"></script>
    </head>
    <body ng-app="myApp">
 
@@ -26,7 +27,7 @@
          </div>
          <h1 class="title">Help Me! Laurier</h1>
          <div class="buttons">
-            <button class="button badge badge-assertive">20</button>
+            <button class="button badge badge-assertive" ui-sref="alerts">1</button>
             <button class="button button-icon ion-person" ui-sref="profile"></button>
          </div>
       </ion-header-bar>
@@ -35,7 +36,7 @@
       <!-- Footer Section  -->
       <ion-footer-bar align-title="left" class="bar-positive">
          <div class="buttons" ng-click="show_Help()">
-            <button class="button"  >Help</button>
+            <button class="button" ui-sref="help" >Help</button>
          </div>
          <h1 class="title">© Help Me! Laurier</h1>
          <div class="buttons" ng-click="show_Eula()">
@@ -54,56 +55,4 @@
       </ion-content>
 
    </body>
-   <script>
-
-
-  var app = angular.module('myApp', ['ionic']);
-  app.config(function($stateProvider) {
-    $stateProvider
-    .state('index', {
-      url: '/',
-      templateUrl: 'home.html'
-    })
-
-
-    .state('eula', {
-      url: '/eula',
-      templateUrl: 'eulaPage.html'
-    })
-
-
-    .state('profile', {
-      url: '/profile',
-      templateUrl: 'profile.html'
-    }
-
-
-    );
-
-
-
-
-
-  });
-
-
-
-angular.module('myApp')
-
-// Click to navigate
-// similar to <a href="#/partial"> but hash is not required, 
-// e.g. <div click-link="/partial">
-.directive('clickLink', ['$location', function($location) {
-    return {
-        link: function(scope, element, attrs) {
-            element.on('click', function() {
-                scope.$apply(function() {
-                    $location.path(attrs.clickLink);
-                });
-            });
-        }
-    }
-}]);
-
-   </script>
 </html>
