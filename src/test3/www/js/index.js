@@ -29,7 +29,7 @@
     })
 	
 	.state('topiclist', {
-      url: '/topiclist',
+      url: '/topiclist/:id',
       templateUrl: 'topiclist.html',
 	  controller: "TopicControl"
     })
@@ -59,9 +59,10 @@
 
 
 
- app.controller('TopicControl', function TopicControl($scope, $http) {
+ app.controller('TopicControl', function TopicControl($scope, $http, $stateParams) {
 	
-	
+      alert($stateParams.id);
+
 			$http.get('http://localhost:8080/submissions/questions').
 	  success(function(data, status, headers, config) {
       $scope.names = data;
