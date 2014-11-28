@@ -55,18 +55,12 @@ module.exports = function(server) {
   server.post('/submissions/questions', function (req, res, next) {
 
       // Uses the Mongoose DB connection to find it
-      console.log(req.params);
-      var data = JSON.parse(req.params);
-      console.log(data);
-      var newQuestion = new QuestionSubmission(data);
+      var x = req.params;
+
+      var newQuestion = new QuestionSubmission(x);
 
       newQuestion.save(function(exception, data) {
-
-        if(exception)
-          res.send("Failure", 500);
-        else
-          res.send(newQuestion, 201);
-
+        res.send(x);
       });
 
 

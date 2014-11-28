@@ -34,6 +34,9 @@
 // Imports
 var restify = require('restify');
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var autoIncrement = require('mongoose-auto-increment');
 
 var path = require('path')
 
@@ -50,7 +53,15 @@ server
   .use(restify.fullResponse())
   .use(restify.bodyParser())
 
-mongoose.connect('mongodb://localhost/test');
+var dbConnection = mongoose.connect('mongodb://localhost/test');
+autoIncrement.initialize(dbConnection);
+
+
+mongoose.plugin(autoIncrement.plugin);
+
+
+
+
 
 server.use(function(req, res, next){
   req.db = mongoose;
