@@ -3,7 +3,8 @@
     $stateProvider
     .state('index', {
       url: '/',
-      templateUrl: 'home.html'
+      templateUrl: 'home.html',
+	     controller: "HomeController"
     })
 
 
@@ -24,12 +25,14 @@
 	
 	.state('post', {
       url: '/post',
-      templateUrl: 'post.html'
+      templateUrl: 'post.html',
+      controller:"Post"
     })
 	
 	.state('topiclist', {
-      url: '/topiclist',
-      templateUrl: 'topiclist.html'
+      url: '/topiclist/:value',
+      templateUrl: 'topiclist.html',
+	  controller: "TopicControl"
     })
 	
 	.state('reply', {
@@ -38,17 +41,15 @@
     })
 	
 	.state('postlist', {
-      url: '/postlist',
-      templateUrl: 'postlist.html'
+      url: '/postlist:value',
+      templateUrl: 'postlist.html',
+	 controller: "PostControl"
     })
 
     .state('profile', {
       url: '/profile',
       templateUrl: 'profile.html'
-    }
-
-
-    );
+    });
 
 
 
@@ -56,8 +57,96 @@
 
   });
 
+
+
+
+// app.controller('TopicControl', function TopicControl($scope, $http, $stateParams) {
+	
+//      alert($stateParams.value);
+
+//			$http.get('http://localhost:8080/submissions/questions').
+//	  success(function(data, status, headers, config) {
+//      $scope.names = data;
+//	  }).
+//	  error(function(data, status, headers, config) {
+		// called asynchronously if an error occurs
+		// or server returns response with an error status.
+//	  });
+
+// });
+  app.controller('Post', function($scope, $http, $stateParams) {
+
+    var category = $stateParams.value; 
+
+    $scope.params = $stateParams; 
+    alert(category);
+    $http.get('http://localhost:8080/submissions/questions').
+    success(function(data, status, headers, config) {
+      $scope.names = data;
+    }).
+    error(function(data, status, headers, config) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+    });
+
+  })
+
+app.controller('TopicControl', function($scope, $http, $stateParams) {
+    
+    var category = $stateParams.value; 
+    
+    $scope.params = $stateParams; 
+    alert(category);
+
+    $http.get('http://localhost:8080/submissions/questions').
+    success(function(data, status, headers, config) {
+      $scope.names = data;
+    }).
+    error(function(data, status, headers, config) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+    });
+
+})
+
+//   app.controller('PostControl', function PostControl($scope, $http) {
+
+   app.controller('PostControl', function($scope, $http, $stateParams) {
+		
+    var category = $stateParams.value;
+
+    $http.get('http://localhost:8080/submissions/questions/1').
+	  success(function(data, status, headers, config) {
+	  console.log(data);
+    $scope.names = data;
+  }).
+  error(function(data, status, headers, config) {
+		// called asynchronously if an error occurs
+    // or server returns response with an error status.
+	  });
+ }); 
+ 
   
-  
+
+ app.controller('HomeController', function HomeController($scope, $http) {
+ 
+    $scope.doge = function() {
+      alert("Do something amazing!");
+    }
+
+    $scope.display = function() {
+     // console.log($scope.data);
+      console.log($scope.data);
+    }
+
+    $scope.data = {
+      category: 4
+    };
+
+   
+
+ });
+
   angular.module('mySuperApp', ['ionic'])
 .controller('PopupCtrl',function($scope, $ionicPopup, $timeout) {
 // Triggered on a button click, or some other target
@@ -84,19 +173,3 @@ $scope.show_Popup = function() {
 });
   
 
-
-angular.module('myApp')
-// Click to navigate
-// similar to <a href="#/partial"> but hash is not required, 
-// e.g. <div click-link="/partial">
-.directive('clickLink', ['$location', function($location) {
-    return {
-        link: function(scope, element, attrs) {
-            element.on('click', function() {
-                scope.$apply(function() {
-                    $location.path(attrs.clickLink);
-                });
-            });
-        }
-    }
-}]);

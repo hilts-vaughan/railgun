@@ -20,7 +20,7 @@ module.exports = function(server) {
       var filter = {};
 
       for(var k in req.query)
-        filter[k] = req.query[k]; 
+        filter[k] = req.query[k];
 
       // Uses the Mongoose DB connection to find it
       QuestionSubmission.find(filter, function(exception, questions){
@@ -47,7 +47,7 @@ module.exports = function(server) {
         if(!exception && questions) {
 
             // Fetch all answers that are similar
-            AnswerSubmission.find({parentQuestionId: req.params.id}, function(exception, answers) {                            
+            AnswerSubmission.find({parentQuestionId: req.params.id}, function(exception, answers) {
                 var json = questions.toObject();
                 json.answers = answers;
                 res.send(json);
@@ -58,7 +58,7 @@ module.exports = function(server) {
           res.send(404);
         }
 
-                  
+
       }); // end database fetch
 
 
