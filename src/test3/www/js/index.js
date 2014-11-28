@@ -25,7 +25,8 @@
 	
 	.state('post', {
       url: '/post',
-      templateUrl: 'post.html'
+      templateUrl: 'post.html',
+      controller:"Post"
     })
 	
 	.state('topiclist', {
@@ -73,6 +74,23 @@
 //	  });
 
 // });
+  app.controller('Post', function($scope, $http, $stateParams) {
+
+    var category = $stateParams.value; 
+
+    $scope.params = $stateParams; 
+    alert(category);
+    $http.get('http://localhost:8080/submissions/questions').
+    success(function(data, status, headers, config) {
+      $scope.names = data;
+    }).
+    error(function(data, status, headers, config) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+    });
+
+  })
+
 app.controller('TopicControl', function($scope, $http, $stateParams) {
     
     var category = $stateParams.value; 
@@ -91,8 +109,13 @@ app.controller('TopicControl', function($scope, $http, $stateParams) {
 
 })
 
-   app.controller('PostControl', function PostControl($scope, $http) {
-		$http.get('http://localhost:8080/submissions/questions/1').
+//   app.controller('PostControl', function PostControl($scope, $http) {
+
+   app.controller('PostControl', function($scope, $http, $stateParams) {
+		
+    var category = $stateParams.value;
+
+    $http.get('http://localhost:8080/submissions/questions/1').
 	  success(function(data, status, headers, config) {
 	  console.log(data);
     $scope.names = data;
