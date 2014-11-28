@@ -16,8 +16,15 @@ module.exports = function(server) {
 
   server.get('/submissions/questions', function (req, res, next) {
 
+      var filter = {};
+
+      for(var k in req.query)
+        filter[k] = req.query[k]; 
+
+      console.log(filter);
+
       // Uses the Mongoose DB connection to find it
-      QuestionSubmission.find({}, function(exception, questions){
+      QuestionSubmission.find(filter, function(exception, questions){
           if(exception) {
             res.send({}, 500)
           }
@@ -56,6 +63,11 @@ module.exports = function(server) {
 
       // Uses the Mongoose DB connection to find it
       var x = req.params;
+
+      // Setup defaults
+      x.submissionDate = new Date();
+      x.categoryId = x.categoryId || 0;
+
 
       var newQuestion = new QuestionSubmission(x);
 

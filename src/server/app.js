@@ -52,6 +52,8 @@ var server = restify.createServer();
 server
   .use(restify.fullResponse())
   .use(restify.bodyParser())
+  .use(restify.queryParser());
+
 
 var dbConnection = mongoose.connect('mongodb://localhost/test');
 autoIncrement.initialize(dbConnection);

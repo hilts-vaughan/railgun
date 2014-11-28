@@ -7,6 +7,7 @@ var answerSchema = new Schema({
     score   : Number,
     authorId   : Number,
     status   : Number,
+    title	: string,
     submissionDate   : Date,
     "questionData": String
 });

@@ -4,11 +4,11 @@ var Schema = mongoose.Schema;
 
 var questionSchema = new Schema({
     body   : String,
-    score   : Number,
+    score   : {type: Number, default: 0},
     authorId   : Number,
-    status   : Number,
+    status   : {type: Number, default: 0},
     submissionDate   : Date,
-    "questionData": String
+    categoryId : {type: Number, default: 0}
 });
 
 
