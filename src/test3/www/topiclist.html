@@ -1,7 +1,11 @@
-<div class="list card">
+<div class="list card" ng-hide="!names">
   <a href="#" class="item item-icon-left" ng-repeat="x in names" ui-sref="postlist({id: x.id})">
     <i class="icon ion-chatbubbles"></i>
     {{ x.title + ', ' + x.postCount }}
   </a>
+</div>
+
+<div ng-hide="names" >
+NOTHING HERE
 </div>
 

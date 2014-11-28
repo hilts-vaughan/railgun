@@ -65,7 +65,7 @@
     var category = $stateParams.value; 
 
     $scope.params = $stateParams; 
-    alert(category);
+
     $http.get('http://localhost:8080/submissions/questions').
     success(function(data, status, headers, config) {
       $scope.names = data;
@@ -84,7 +84,6 @@ app.controller('TopicList', function($scope, $http, $stateParams) {
     var category = $stateParams.value; 
     
     $scope.params = $stateParams; 
-    alert(category);
 
     $http.get('http://localhost:8080/submissions/questions?categoryId='+category).
     success(function(data, status, headers, config) {
@@ -102,7 +101,6 @@ app.controller('TopicList', function($scope, $http, $stateParams) {
 		
     var questionId = $stateParams.id;
 	 $scope.params = $stateParams; 
-	 alert(questionId);
 
     $http.get('http://localhost:8080/submissions/questions/'+questionId).
 	  success(function(data, status, headers, config) {
