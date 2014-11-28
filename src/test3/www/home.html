@@ -3,19 +3,19 @@
   
 
 
-<div class="col col-80 col-offset-10"><button class="button button-full button-positive" ui-sref="post">Ask Question</button></div>
-<div class="col col-80 col-offset-10"><button class="button button-full button-positive"ui-sref="topiclist($scope.data)">  View Question</button></div>
+<div class="col col-80 col-offset-10"><button class="button button-full button-positive" ui-sref="post({value:data.category})">Ask Question</button></div>
+<div class="col col-80 col-offset-10"><button class="button button-full button-positive"ui-sref="topiclist({value:data.category})">  View Question</button></div>
 
 <div class="list">
 <div class="item item-divider">
-    Select A Catagory
+    Select A Category
   </div>
     
 <div  ng-init="names=['Academic','Residence','Financial','Social','Misc']">
-  <button ng-click="display()">Gief Info</button>
+ 
   <ul>
 
-    <ion-radio  ng-repeat="x in names" ng-model="data.value" ng-value="$index">{{x}}</ion-radio>
+    <ion-radio  ng-repeat="x in names" ng-model="data.category" ng-value="$index">{{x}}</ion-radio>
     
   </ul>
 </div>

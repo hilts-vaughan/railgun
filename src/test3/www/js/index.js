@@ -29,7 +29,7 @@
     })
 	
 	.state('topiclist', {
-      url: '/topiclist/:id',
+      url: '/topiclist/:value',
       templateUrl: 'topiclist.html',
 	  controller: "TopicControl"
     })
@@ -40,7 +40,7 @@
     })
 	
 	.state('postlist', {
-      url: '/postlist',
+      url: '/postlist:value',
       templateUrl: 'postlist.html',
 	 controller: "PostControl"
     })
@@ -59,30 +59,47 @@
 
 
 
- app.controller('TopicControl', function TopicControl($scope, $http, $stateParams) {
+// app.controller('TopicControl', function TopicControl($scope, $http, $stateParams) {
 	
-      alert($stateParams.id);
+//      alert($stateParams.value);
 
-			$http.get('http://localhost:8080/submissions/questions').
-	  success(function(data, status, headers, config) {
-      $scope.names = data;
-	  }).
-	  error(function(data, status, headers, config) {
+//			$http.get('http://localhost:8080/submissions/questions').
+//	  success(function(data, status, headers, config) {
+//      $scope.names = data;
+//	  }).
+//	  error(function(data, status, headers, config) {
 		// called asynchronously if an error occurs
 		// or server returns response with an error status.
-	  });
+//	  });
 
- });
+// });
+app.controller('TopicControl', function($scope, $http, $stateParams) {
+    
+    var category = $stateParams.value; 
+    
+    $scope.params = $stateParams; 
+    alert(category);
+
+    $http.get('http://localhost:8080/submissions/questions').
+    success(function(data, status, headers, config) {
+      $scope.names = data;
+    }).
+    error(function(data, status, headers, config) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+    });
+
+})
 
    app.controller('PostControl', function PostControl($scope, $http) {
 		$http.get('http://localhost:8080/submissions/questions/1').
 	  success(function(data, status, headers, config) {
 	  console.log(data);
-      $scope.names = data;
-	  }).
-	  error(function(data, status, headers, config) {
+    $scope.names = data;
+  }).
+  error(function(data, status, headers, config) {
 		// called asynchronously if an error occurs
-		// or server returns response with an error status.
+    // or server returns response with an error status.
 	  });
  }); 
  
@@ -100,7 +117,7 @@
     }
 
     $scope.data = {
-      value: 4
+      category: 4
     };
 
    
