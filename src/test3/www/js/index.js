@@ -36,8 +36,9 @@
     })
 
 	.state('reply', {
-      url: '/reply',
-      templateUrl: 'reply.html'
+      url: '/reply/:id/:title',
+      templateUrl: 'reply.html',
+	  controller:"ReplyItem"
     })
 
 	.state('postlist', {
@@ -63,22 +64,61 @@
   app.controller('PostItem', function($scope, $http, $stateParams) {
 
     var category = $stateParams.value;
-
     $scope.params = $stateParams;
 
-    $http.get('http://localhost:8080/submissions/questions').
-    success(function(data, status, headers, config) {
-      $scope.names = data;
-    }).
-    error(function(data, status, headers, config) {
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-    });
+
+	$scope.SubmitPost = function(title,body) {
+
+	    var question = {
+    	title: title,
+    	body: body,
+    	categoryId: category
+    };
+
+	$http.post('http://localhost:8080/submissions/questions', question).
+  success(function(data, status, headers, config) {
+   alert('Succeed');
+  });
+    };
+  })
+
+
+
+    app.controller('ReplyItem', function($scope, $http, $stateParams) {
+    var id = $stateParams.id;
+	var title= $stateParams.title
+		$scope.Title=title;
+    $scope.params = $stateParams;
+>>>>>>> 118654ee5232fc19300e9bcf0db1758aa458ddad
+
+ 	$scope.SubmitReply = function(body) {
+
+	    var question = {
+
+    	body: body,
+
+<<<<<<< HEAD
+
+
+=======
+    };
+
+	$http.post('http://localhost:8080/submissions/answers/'+id, question).
+  success(function(data, status, headers, config) {
+   alert('Succeed');
+  });
+    };
+
+
+
+
 
   })
 
 
 
+
+>>>>>>> 118654ee5232fc19300e9bcf0db1758aa458ddad
 app.controller('TopicList', function($scope, $http, $stateParams) {
 
     var category = $stateParams.value;
