@@ -24,15 +24,15 @@
     })
 	
 	.state('post', {
-      url: '/post',
+      url: '/post/:value',
       templateUrl: 'post.html',
-      controller:"Post"
+      controller:"PostItem"
     })
 	
 	.state('topiclist', {
       url: '/topiclist/:value',
       templateUrl: 'topiclist.html',
-	  controller: "TopicControl"
+	  controller: "TopicList"
     })
 	
 	.state('reply', {
@@ -43,7 +43,7 @@
 	.state('postlist', {
       url: '/postlist:value',
       templateUrl: 'postlist.html',
-	 controller: "PostControl"
+	 controller: "PostList"
     })
 
     .state('profile', {
@@ -53,28 +53,14 @@
 
 
 
-
-
   });
 
 
 
 
-// app.controller('TopicControl', function TopicControl($scope, $http, $stateParams) {
-	
-//      alert($stateParams.value);
 
-//			$http.get('http://localhost:8080/submissions/questions').
-//	  success(function(data, status, headers, config) {
-//      $scope.names = data;
-//	  }).
-//	  error(function(data, status, headers, config) {
-		// called asynchronously if an error occurs
-		// or server returns response with an error status.
-//	  });
 
-// });
-  app.controller('Post', function($scope, $http, $stateParams) {
+  app.controller('PostItem', function($scope, $http, $stateParams) {
 
     var category = $stateParams.value; 
 
@@ -91,7 +77,9 @@
 
   })
 
-app.controller('TopicControl', function($scope, $http, $stateParams) {
+  
+ 
+app.controller('TopicList', function($scope, $http, $stateParams) {
     
     var category = $stateParams.value; 
     
@@ -109,13 +97,11 @@ app.controller('TopicControl', function($scope, $http, $stateParams) {
 
 })
 
-//   app.controller('PostControl', function PostControl($scope, $http) {
-
-   app.controller('PostControl', function($scope, $http, $stateParams) {
+   app.controller('PostList', function($scope, $http, $stateParams) {
 		
     var category = $stateParams.value;
 
-    $http.get('http://localhost:8080/submissions/questions/1').
+    $http.get('http://localhost:8080/submissions/questions/2').
 	  success(function(data, status, headers, config) {
 	  console.log(data);
     $scope.names = data;
@@ -129,18 +115,9 @@ app.controller('TopicControl', function($scope, $http, $stateParams) {
   
 
  app.controller('HomeController', function HomeController($scope, $http) {
- 
-    $scope.doge = function() {
-      alert("Do something amazing!");
-    }
-
-    $scope.display = function() {
-     // console.log($scope.data);
-      console.log($scope.data);
-    }
 
     $scope.data = {
-      category: 4
+      category: 0
     };
 
    
