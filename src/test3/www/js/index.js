@@ -36,7 +36,7 @@
     })
 	
 	.state('reply', {
-      url: '/reply:id/:title',
+      url: '/reply/:id/:title',
       templateUrl: 'reply.html',
 	  controller:"ReplyItem"
     })

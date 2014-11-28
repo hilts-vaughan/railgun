@@ -1,14 +1,14 @@
 <div class="list list-inset">
 
-  <label class="item item-input">
-    <input type="text" placeholder="Title">
+  <label class="item item-input" >
+    <input type="text" placeholder="Title" ng-model="Title" ng-readonly="true">
  </label>
-  <label class="item item-input">
-    <textarea placeholder="Description" rows="8" cols="10">	</textarea>
+  <label class="item item-input" >
+    <textarea placeholder="Description" rows="8" cols="10" ng-model="Body">	</textarea>
  </label>
 </div>
-	  
-	  <div class="col col-80 col-offset-10"><button class="button button-full button-positive">  Submit</button></div>
-	  
-	  
-	  reply
+
+
+
+
+	  <div class="col col-80 col-offset-10"><button class="button button-full button-positive" ng-click="SubmitReply(Body)">Submit</button></div>
