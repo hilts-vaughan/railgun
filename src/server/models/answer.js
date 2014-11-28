@@ -9,7 +9,8 @@ var answerSchema = new Schema({
     authorId   : Number,
     status   : {type: Number, default: 0},
     submissionDate   : Date,
-    categoryId : {type: Number, default: 0}
+    categoryId : {type: Number, default: 0},
+    parentQuestionId : {type: Number}
 });
 
 // Duplicate the ID field.

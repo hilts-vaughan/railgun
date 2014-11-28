@@ -11,6 +11,7 @@
 */
 
 var QuestionSubmission = require('./../models/question');
+var AnswerSubmission = require('./../models/answer');
 
 module.exports = function(server) {
 
@@ -20,8 +21,6 @@ module.exports = function(server) {
 
       for(var k in req.query)
         filter[k] = req.query[k]; 
-
-      console.log(filter);
 
       // Uses the Mongoose DB connection to find it
       QuestionSubmission.find(filter, function(exception, questions){
@@ -43,14 +42,23 @@ module.exports = function(server) {
       QuestionSubmission.findById(
         req.params.id
     , function(exception, questions){
-          if(exception) {
-            res.send({}, 500)
-          }
 
-          else {
-            res.send(questions);
-          }
 
+        if(!exception && questions) {
+
+            // Fetch all answers that are similar
+            AnswerSubmission.find({parentQuestionId: req.params.id}, function(exception, answers) {                            
+                var json = questions.toObject();
+                json.answers = answers;
+                res.send(json);
+            })
+
+        }
+        else {
+          res.send(404);
+        }
+
+                  
       }); // end database fetch
 
 
