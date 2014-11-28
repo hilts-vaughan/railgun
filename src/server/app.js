@@ -49,6 +49,7 @@ function respond(req, res, next) {
 
 var server = restify.createServer();
 
+// Setup some basic plugins and parsers for the restify server
 server
   .use(restify.fullResponse())
   .use(restify.bodyParser())
@@ -56,28 +57,27 @@ server
 
 
 var dbConnection = mongoose.connect('mongodb://localhost/test');
+
+// Ensure everything gets a unique incremented ID, like an old fashioned relational database
 autoIncrement.initialize(dbConnection);
-
-
 mongoose.plugin(autoIncrement.plugin);
 
 
-
-
-
+// Attach mongoose onto the requests for usage
 server.use(function(req, res, next){
   req.db = mongoose;
   next();
 })
 
 
+// Setup all the routes
 var normalizedPath = path.join(__dirname, "routes");
-
 require("fs").readdirSync(normalizedPath).forEach(function(file) {
   require("./routes/" + file)(server);
 });
 
 
+// Finally, begin listening.
 server.listen(8080, function() {
-  console.log('%s listening at %s', server.name, server.url);
+  console.log('%s listening at %s and open for connections.', "Help Me! Laurier", server.url);
 });
