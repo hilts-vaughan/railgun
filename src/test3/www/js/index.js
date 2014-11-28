@@ -17,29 +17,29 @@
       url: '/alerts',
       templateUrl: 'alerts.html'
     })
-	
+
 	.state('help', {
       url: '/help',
       templateUrl: 'help.html'
     })
-	
+
 	.state('post', {
       url: '/post/:value',
       templateUrl: 'post.html',
       controller:"PostItem"
     })
-	
+
 	.state('topiclist', {
       url: '/topiclist/:value',
       templateUrl: 'topiclist.html',
 	  controller: "TopicList"
     })
-	
+
 	.state('reply', {
       url: '/reply',
       templateUrl: 'reply.html'
     })
-	
+
 	.state('postlist', {
       url: '/postlist/:id',
       templateUrl: 'postlist.html',
@@ -62,9 +62,9 @@
 
   app.controller('PostItem', function($scope, $http, $stateParams) {
 
-    var category = $stateParams.value; 
+    var category = $stateParams.value;
 
-    $scope.params = $stateParams; 
+    $scope.params = $stateParams;
 
     $http.get('http://localhost:8080/submissions/questions').
     success(function(data, status, headers, config) {
@@ -77,13 +77,13 @@
 
   })
 
-  
- 
+
+
 app.controller('TopicList', function($scope, $http, $stateParams) {
-    
-    var category = $stateParams.value; 
-    
-    $scope.params = $stateParams; 
+
+    var category = $stateParams.value;
+
+    $scope.params = $stateParams;
 
     $http.get('http://localhost:8080/submissions/questions?categoryId='+category).
     success(function(data, status, headers, config) {
@@ -98,9 +98,9 @@ app.controller('TopicList', function($scope, $http, $stateParams) {
 })
 
    app.controller('PostList', function($scope, $http, $stateParams) {
-		
+
     var questionId = $stateParams.id;
-	 $scope.params = $stateParams; 
+	 $scope.params = $stateParams;
 
     $http.get('http://localhost:8080/submissions/questions/'+questionId).
 	  success(function(data, status, headers, config) {
@@ -111,9 +111,9 @@ app.controller('TopicList', function($scope, $http, $stateParams) {
 		// called asynchronously if an error occurs
     // or server returns response with an error status.
 	  });
- }); 
- 
-  
+ });
+
+
 
  app.controller('HomeController', function HomeController($scope, $http) {
 
@@ -121,7 +121,7 @@ app.controller('TopicList', function($scope, $http, $stateParams) {
       category: 0
     };
 
-   
+
 
  });
 
@@ -146,8 +146,8 @@ $scope.show_Popup = function() {
   });
 
  };
- 
+
 
 });
-  
+
 
