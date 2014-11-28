@@ -126,7 +126,7 @@ app.controller('LoginController', function($scope, $http, $stateParams, $cordova
 
 
   $scope.googleLogin = function() {
-        $cordovaOauth.google("545399189789-20pqecrl9d4le6q7nk7p36lr1ff6q8un.apps.googleusercontent.com", ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
+        $cordovaOauth.google("545399189789-3121jso4tgpsn2bgqlm47r0374duh51v.apps.googleusercontent.com", ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
             console.log(result);
             var token = access_token;
 
