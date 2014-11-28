@@ -1,4 +1,4 @@
-  var app = angular.module('myApp', ['ionic']);
+  var app = angular.module('myApp', ['ionic', 'ngCordova']);
   app.config(function($stateProvider) {
     $stateProvider
     .state('index', {
@@ -20,7 +20,8 @@
 
   .state('login', {
     url: '/login',
-    templateUrl: 'login.html'
+    templateUrl: 'login.html',
+    controller: 'LoginController'
   })
 
 	.state('help', {
@@ -116,6 +117,19 @@
   })
 
 
+app.controller('LoginController', function($scope, $http, $stateParams) {
+
+
+  $scope.googleLogin = function() {
+        alert("!");
+        $cordovaOauth.google("CLIENT_ID_HERE", ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
+            console.log(JSON.stringify(result));
+        }, function(error) {
+            console.log(error);
+        });
+    }
+
+})
 
 
 app.controller('TopicList', function($scope, $http, $stateParams) {
