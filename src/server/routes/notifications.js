@@ -9,6 +9,9 @@
     Further resources provided are described the actual endpoint descriptions.
 
 */
+
+var Notification = require('./../models/notification');
+
 module.exports = function(server) {
 
 
@@ -17,8 +20,20 @@ module.exports = function(server) {
 
       Notes:   Resources provided
   */
-  server.get('/reports/:id', function (req, res, next) {
-      res.send(200);
+  server.get('/notifications', function (req, res, next) {
+    
+
+      var filter = {};
+
+      for(var k in req.query)
+        filter[k] = req.query[k]; 
+
+      Notification.find(filter, function(exception, notifications) {
+
+      });
+
+
+
   });
 
 

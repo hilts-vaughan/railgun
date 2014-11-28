@@ -9,7 +9,6 @@ var answerSchema = new Schema({
     authorId   : Number,
     status   : {type: Number, default: 0},
     submissionDate   : Date,
-    categoryId : {type: Number, default: 0},
     parentQuestionId : {type: Number}
 });
 
@@ -26,5 +25,4 @@ answerSchema.set('toJSON', {
 
 
 var AnswerSubmission = mongoose.model('AnswerSubmission', answerSchema);
-
 module.exports = AnswerSubmission;

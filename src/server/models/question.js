@@ -25,7 +25,4 @@ questionSchema.set('toJSON', {
 
 
 var QuestionSubmission = mongoose.model('QuestionSubmission', questionSchema);
-
-
-
 module.exports = QuestionSubmission;
