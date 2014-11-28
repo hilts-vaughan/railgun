@@ -41,7 +41,7 @@
     })
 	
 	.state('postlist', {
-      url: '/postlist:value',
+      url: '/postlist/:id',
       templateUrl: 'postlist.html',
 	 controller: "PostList"
     })
@@ -86,9 +86,10 @@ app.controller('TopicList', function($scope, $http, $stateParams) {
     $scope.params = $stateParams; 
     alert(category);
 
-    $http.get('http://localhost:8080/submissions/questions').
+    $http.get('http://localhost:8080/submissions/questions?categoryId='+category).
     success(function(data, status, headers, config) {
       $scope.names = data;
+	  console.log(data);
     }).
     error(function(data, status, headers, config) {
     // called asynchronously if an error occurs
@@ -99,9 +100,11 @@ app.controller('TopicList', function($scope, $http, $stateParams) {
 
    app.controller('PostList', function($scope, $http, $stateParams) {
 		
-    var category = $stateParams.value;
+    var questionId = $stateParams.id;
+	 $scope.params = $stateParams; 
+	 alert(questionId);
 
-    $http.get('http://localhost:8080/submissions/questions/2').
+    $http.get('http://localhost:8080/submissions/questions/'+questionId).
 	  success(function(data, status, headers, config) {
 	  console.log(data);
     $scope.names = data;

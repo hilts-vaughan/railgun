@@ -11,10 +11,34 @@
  {{names.body}} </div>
   <div class="item item-divider">
   <span class="left">-Posted by: {{names.author}}</span>
+  
   <!-- <span class="right" > <a href="" ng-controller="PopupCtrl" ng-click="show_Popup()">Report</a> 
     </span> -->
   </div>
 </div>
+
+
+
+	<!-- Card Section  -->
+   <div class="card" ng-repeat="answer in names.answers">
+  <div class="item item-divider">
+   <span class="left"><h1>{{answer.title}}</h1></span>
+  <span class="right">
+   <button class="button button-icon  ion-chevron-up" ng-click="vote_Up()" ></button>
+ <button class="button button-icon ion-chevron-down" ng-click="vote_Down()"></button>
+ </span>
+  </div>
+  <div class="item item-text-wrap">
+ {{answer.body}} </div>
+  <div class="item item-divider">
+  <span class="left">-Posted by: {{answer.author}}</span>
+  
+  <!-- <span class="right" > <a href="" ng-controller="PopupCtrl" ng-click="show_Popup()">Report</a> 
+    </span> -->
+  </div>
+</div>
+
+
 
 <!-- Reply Button Section  -->
 	<div class="col col-80 col-offset-10"><button class="button button-full button-positive">  Reply</button></div>
