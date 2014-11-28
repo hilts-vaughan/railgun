@@ -1,40 +1,78 @@
 /*
-    Describes the routing for the
+    Routing Resource:  /submissions/questions
+                       /submissions/questions/:id
+
+    Resources Provided: This route provides resources to the questions endpoints.
+    It allows getting questions by ID, fetching entire packages of questions, and posting
+    new ones.
+
+    Further resources provided are described the actual endpoint descriptions.
+
 */
 
 var QuestionSubmission = require('./../models/question');
-var AnswerSubmission = require('./../models/answer');
 
 module.exports = function(server) {
 
   server.get('/submissions/questions', function (req, res, next) {
-      var list = [];
-      for(var i = 0; i < 100; i++) {
-          list.push({
-            "body": "42 doge",
-            "title": "What is the answer to life and everything?",
-            "categoryId": 1,
-            "postCount": 9001
-          })
-      }
-      res.send(list);
+
+      // Uses the Mongoose DB connection to find it
+      QuestionSubmission.find({}, function(exception, questions){
+          if(exception) {
+            res.send({}, 500)
+          }
+          else {
+            res.send(questions);
+          }
+
+      });
+
   });
 
   server.get('/submissions/questions/:id', function (req, res, next) {
-        var id = req.params.id;
-        var list = {
-          "body": "42 doge",
-          "title": "What is the answer to life and everything?",
-          "categoryId": 1,
-          "postCount": 9001,
-          "score": 95382647,
-          "author": "Vaughan Doge King",
-          "id": id
-        }
 
-      res.send(list);
+
+      // Uses the Mongoose DB connection to find it
+      QuestionSubmission.findById(
+        req.params.id
+    , function(exception, questions){
+          if(exception) {
+            res.send({}, 500)
+          }
+
+          else {
+            res.send(questions);
+          }
+
+      }); // end database fetch
+
+
+
+  }); // end /submissions/questions/:id
+
+
+
+  server.post('/submissions/questions', function (req, res, next) {
+
+      // Uses the Mongoose DB connection to find it
+      console.log(req.params);
+      var data = JSON.parse(req.params);
+      console.log(data);
+      var newQuestion = new QuestionSubmission(data);
+
+      newQuestion.save(function(exception, data) {
+
+        if(exception)
+          res.send("Failure", 500);
+        else
+          res.send(newQuestion, 201);
+
+      });
+
 
   });
+
+
 
 
 }

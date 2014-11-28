@@ -8,7 +8,6 @@ var answerSchema = new Schema({
     authorId   : Number,
     status   : Number,
     submissionDate   : Date,
-    id : Number,
     "questionData": String
 });
 

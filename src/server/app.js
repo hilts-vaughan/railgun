@@ -50,9 +50,12 @@ server
   .use(restify.fullResponse())
   .use(restify.bodyParser())
 
-//mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/test');
 
-
+server.use(function(req, res, next){
+  req.db = mongoose;
+  next();
+})
 
 
 var normalizedPath = path.join(__dirname, "routes");
