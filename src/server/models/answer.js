@@ -4,12 +4,12 @@ var Schema = mongoose.Schema;
 
 var answerSchema = new Schema({
     body   : String,
-    score   : Number,
+    title: String,
+    score   : {type: Number, default: 0},
     authorId   : Number,
-    status   : Number,
-    title	: string,
+    status   : {type: Number, default: 0},
     submissionDate   : Date,
-    "questionData": String
+    categoryId : {type: Number, default: 0}
 });
 
 // Duplicate the ID field.

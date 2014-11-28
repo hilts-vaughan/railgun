@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var questionSchema = new Schema({
     body   : String,
+    title: String,
     score   : {type: Number, default: 0},
     authorId   : Number,
     status   : {type: Number, default: 0},
