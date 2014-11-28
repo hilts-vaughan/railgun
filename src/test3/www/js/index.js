@@ -17,30 +17,30 @@
       url: '/alerts',
       templateUrl: 'alerts.html'
     })
-
+	
 	.state('help', {
       url: '/help',
       templateUrl: 'help.html'
     })
-
+	
 	.state('post', {
       url: '/post/:value',
       templateUrl: 'post.html',
       controller:"PostItem"
     })
-
+	
 	.state('topiclist', {
       url: '/topiclist/:value',
       templateUrl: 'topiclist.html',
 	  controller: "TopicList"
     })
-
+	
 	.state('reply', {
       url: '/reply/:id/:title',
       templateUrl: 'reply.html',
 	  controller:"ReplyItem"
     })
-
+	
 	.state('postlist', {
       url: '/postlist/:id',
       templateUrl: 'postlist.html',
@@ -63,67 +63,61 @@
 
   app.controller('PostItem', function($scope, $http, $stateParams) {
 
-    var category = $stateParams.value;
-    $scope.params = $stateParams;
-
-
+    var category = $stateParams.value; 
+    $scope.params = $stateParams; 
+	
+	
 	$scope.SubmitPost = function(title,body) {
-
+	
 	    var question = {
     	title: title,
     	body: body,
     	categoryId: category
     };
-
+	
 	$http.post('http://localhost:8080/submissions/questions', question).
   success(function(data, status, headers, config) {
    alert('Succeed');
-  });
+  }); 
     };
   })
-
-
-
+  
+  
+  
     app.controller('ReplyItem', function($scope, $http, $stateParams) {
-    var id = $stateParams.id;
+    var id = $stateParams.id; 
 	var title= $stateParams.title
 		$scope.Title=title;
-    $scope.params = $stateParams;
->>>>>>> 118654ee5232fc19300e9bcf0db1758aa458ddad
+    $scope.params = $stateParams; 
 
  	$scope.SubmitReply = function(body) {
-
+	
 	    var question = {
 
     	body: body,
 
-<<<<<<< HEAD
-
-
-=======
     };
-
+	
 	$http.post('http://localhost:8080/submissions/answers/'+id, question).
   success(function(data, status, headers, config) {
    alert('Succeed');
-  });
-    };
-
-
-
-
-
+  }); 
+    }; 
+	
+	
+	
+	
+	
   })
+  
 
 
-
-
->>>>>>> 118654ee5232fc19300e9bcf0db1758aa458ddad
+ 
 app.controller('TopicList', function($scope, $http, $stateParams) {
-
-    var category = $stateParams.value;
-
-    $scope.params = $stateParams;
+    
+    var category = $stateParams.value; 
+    
+    $scope.params = $stateParams; 
 
     $http.get('http://localhost:8080/submissions/questions?categoryId='+category).
     success(function(data, status, headers, config) {
@@ -138,9 +132,9 @@ app.controller('TopicList', function($scope, $http, $stateParams) {
 })
 
    app.controller('PostList', function($scope, $http, $stateParams) {
-
+		
     var questionId = $stateParams.id;
-	 $scope.params = $stateParams;
+	 $scope.params = $stateParams; 
 
     $http.get('http://localhost:8080/submissions/questions/'+questionId).
 	  success(function(data, status, headers, config) {
@@ -151,9 +145,9 @@ app.controller('TopicList', function($scope, $http, $stateParams) {
 		// called asynchronously if an error occurs
     // or server returns response with an error status.
 	  });
- });
-
-
+ }); 
+ 
+  
 
  app.controller('HomeController', function HomeController($scope, $http) {
 
@@ -161,7 +155,7 @@ app.controller('TopicList', function($scope, $http, $stateParams) {
       category: 0
     };
 
-
+   
 
  });
 
@@ -186,8 +180,8 @@ $scope.show_Popup = function() {
   });
 
  };
-
+ 
 
 });
-
+  
 
