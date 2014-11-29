@@ -7,6 +7,7 @@ var questionSchema = new Schema({
     title: String,
     score   : {type: Number, default: 0},
     authorId   : Number,
+    author   : String,
     status   : {type: Number, default: 0},
     submissionDate   : Date,
     categoryId : {type: Number, default: 0}

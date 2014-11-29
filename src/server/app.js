@@ -42,20 +42,17 @@ var autoIncrement = require('mongoose-auto-increment');
 var path = require('path')
 
 
-
-function respond(req, res, next) {
-  res.send('hello ' + req.params.name);
-  next();
-}
-
+restify.CORS.ALLOW_HEADERS.push('authorization');
 var server = restify.createServer();
 
 
 // Setup some basic plugins and parsers for the restify server
 server
+  .use(restify.CORS())
   .use(restify.fullResponse())
   .use(restify.bodyParser())
-  .use(restify.queryParser());
+  .use(restify.queryParser())
+  .use(restify.authorizationParser());
 
 
 var dbConnection = mongoose.connect('mongodb://localhost/test');
@@ -63,6 +60,7 @@ var dbConnection = mongoose.connect('mongodb://localhost/test');
 // Ensure everything gets a unique incremented ID, like an old fashioned relational database
 autoIncrement.initialize(dbConnection);
 mongoose.plugin(autoIncrement.plugin);
+
 
 
 // Attach mongoose onto the requests for usage

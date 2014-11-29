@@ -6,7 +6,7 @@
 
     $stateProvider
     .state('index', {
-      url: '/',
+      url: '/home',
       templateUrl: 'home.html',
 	     controller: "HomeController"
     })
@@ -125,7 +125,7 @@
   })
 
 
-app.controller('LoginController', function($scope, $http, $stateParams, $cordovaOauth) {
+app.controller('LoginController', function($scope, $http, $stateParams, $cordovaOauth, $location) {
 
 
 
@@ -133,15 +133,25 @@ app.controller('LoginController', function($scope, $http, $stateParams, $cordova
   $scope.login = function() {
         // Do stuff
         localStorage["identity"] = $scope.identity;
+
+        $scope.checkIdentity();
     }
 
     $scope.checkIdentity = function() {
         var identity = localStorage["identity"];
         if(identity) {
-          $http.defaults.headers.common.Authorization = identity;
-        }
-        else {
-          alert("dfdf");
+          //$http.defaults.headers.common.Authorization = identity;
+
+            $http.get('http://localhost:8080/login/' + identity).
+    success(function(data, status, headers, config) {
+        $location.path("/home");
+    console.log(data);
+    }).
+    error(function(data, status, headers, config) {
+	alert("Connection Failed");
+    });
+
+
         }
     }
 
