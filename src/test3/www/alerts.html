@@ -1,15 +1,19 @@
 
 
   <!-- Notification Section  -->	  
+<!--Tab style bars -->
 	 <div class="button-bar" >
+<!-- Update to question mode-->
   <a class="button button-positive" ng-click="SetQuest()">Recomended</a>
+<!-- update to answer mode-->
   <a class="button button-positive"ng-click="SetAns()">Answered</a>
 </div>
 	  <div class="list">
-
+<!-- Make a list with a header -->
   <div class="item item-divider" align="center">
     Recomended/Answered Questions
   </div>
+<!--print the list using the current notifications to the scree -->
   <ul>
   <a class="item" href="#" ng-repeat="x in SampCurrent.current">{{x}}
   </a>

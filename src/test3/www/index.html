@@ -25,23 +25,30 @@
 
       <!-- Header Section  -->
       <ion-header-bar align-title="left" class="bar-positive">
+      <!--Although it says it goes to the index page this button actually takes you to the home page... -->
          <div class="buttons">
-            <button class="button button-icon ion-home" ui-sref="index"></button>
+            <button class="button button-icon ion-home" ui-sref="home"></button>
          </div>
+         <!--This places the title of the app within the header -->
          <h1 class="title">Help Me! Laurier</h1>
          <div class="buttons">
+            <!--This button is for taking you to the alerts page -->
             <button class="button badge badge-assertive" ui-sref="alerts">1</button>
+            <!--This button if for taking you to the profile page -->
             <button class="button button-icon ion-person" ui-sref="profile"></button>
          </div>
+       <!-- end of header section -->  
       </ion-header-bar>
 
 
       <!-- Footer Section  -->
       <ion-footer-bar align-title="left" class="bar-positive">
+      <!--This is the help button found in the footer -->
          <div class="buttons" ng-click="show_Help()">
             <button class="button" ui-sref="help" >Help</button>
          </div>
          <h1 class="title">© Help Me! Laurier</h1>
+         <!--This is for displaing the EULA page -->  
          <div class="buttons" ng-click="show_Eula()">
             <button class="button" ui-sref="eula">EULA</button>
          </div>
@@ -51,6 +58,7 @@
       <ion-content>
 
         <ion-nav-bar></ion-nav-bar>
+         <!--This sets our animation style to slide left or right when buttons are pressed -->  
         <ion-nav-view animation="slide-left-right">
           <!-- Center content -->
         </ion-nav-view>

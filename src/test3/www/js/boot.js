@@ -14,7 +14,7 @@
       $urlRouterProvider.otherwise('/login')
 
       $stateProvider
-        .state('index', {
+        .state('home', {
             url: '/home',
             templateUrl: 'home.html',
             controller: "HomeController"
