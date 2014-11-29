@@ -6,9 +6,9 @@
   </a>
   <a href="#" class="item item-icon-left" ng-repeat="x in names" ui-sref="postlist({id: x.id}) "ng-hide="!names">
     <i class="icon ion-chatbubbles"></i>
-	[  {{ x.title }}  ]
+	 {{ x.title }}
 	<br>
-	<h4>Posted by:{{x.author}}</h4>
+  <span class="left" style="color: gray; font-size: 12px;">Posted by: {{x.author}}</span>
   </a>
   </div>
 
