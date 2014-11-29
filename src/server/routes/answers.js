@@ -24,7 +24,7 @@ module.exports = function(server) {
       // Setup defaults
       x.submissionDate = new Date();
       x.parentQuestionId = req.params.id;
-      x.author = req.params.identity;
+      x.author = req.headers['auth'];
 
 
 

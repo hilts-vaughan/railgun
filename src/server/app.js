@@ -42,13 +42,15 @@ var autoIncrement = require('mongoose-auto-increment');
 var path = require('path')
 
 
-restify.CORS.ALLOW_HEADERS.push('authorization');
+restify.CORS.ALLOW_HEADERS.push('auth');
+
+
 var server = restify.createServer();
 
 
 // Setup some basic plugins and parsers for the restify server
 server
-  .use(restify.CORS())
+  .use(restify.CORS({ headers: [ 'auth' ], origins: ['*'] }))
   .use(restify.fullResponse())
   .use(restify.bodyParser())
   .use(restify.queryParser())

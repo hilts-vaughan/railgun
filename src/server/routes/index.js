@@ -78,8 +78,7 @@ module.exports = function(server) {
       x.submissionDate = new Date();
       x.categoryId = x.categoryId || 0;
 
-      x.author = req.params.identity;
-
+      x.author = req.headers['auth'];
 
       var newQuestion = new QuestionSubmission(x);
 

@@ -140,7 +140,8 @@ app.controller('LoginController', function($scope, $http, $stateParams, $cordova
     $scope.checkIdentity = function() {
         var identity = localStorage["identity"];
         if(identity) {
-          //$http.defaults.headers.common.Authorization = identity;
+
+          $http.defaults.headers.common['auth'] = identity;
 
             $http.get('http://localhost:8080/login/' + identity).
     success(function(data, status, headers, config) {
@@ -190,8 +191,8 @@ app.controller('TopicList', function($scope, $http, $stateParams) {
   error(function(data, status, headers, config) {
 	alert("Connection Failed");
 	  });
-	  
-	  
+
+
 	  $scope.show_Popup = function() {
   $scope.data = {}
   // An elaborate, custom popup
@@ -210,7 +211,7 @@ app.controller('TopicList', function($scope, $http, $stateParams) {
   });
 
  };
-	  
+
  });
 
 
