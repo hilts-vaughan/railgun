@@ -216,12 +216,13 @@ app.controller('PostItem', function($scope, $http, $stateParams, $location, conf
               buttons: [{
                   text: '<font size="1">Spam</font>',
                   onTap: function(e) {
-                      alert('Spam - Post ID:' + $scope.names._id);
+					  window.open('mailto:reporting@helpmelaurier.com?subject=Report Post: Spam&body=Do Not Remove [: Post Title: '+$scope.names.title+'ID: '+$scope.names._id+'Category: '+$scope.names.categoryId+']');
                   }
               }, {
                   text: '<font size="1">Language</font>',
                   onTap: function(e) {
-                      alert('Language - Post ID:' + $scope.names._id);
+                      window.open('mailto:reporting@helpmelaurier.com?subject=Report Post: Language&body=Do Not Remove [: Post Title: '+$scope.names.title+'ID: '+$scope.names._id+'Category: '+$scope.names.categoryId+']');
+                  
                   }
               }, {
                   text: '<font size="1">Cancel</font>',
