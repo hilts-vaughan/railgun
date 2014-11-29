@@ -36,13 +36,13 @@
     })
 
 	.state('post', {
-      url: '/post/:value',
+      url: '/post/:id',
       templateUrl: 'post.html',
       controller:"PostItem"
     })
 
 	.state('topiclist', {
-      url: '/topiclist/:value',
+      url: '/topiclist/:id',
       templateUrl: 'topiclist.html',
 	  controller: "TopicList"
     })
@@ -73,7 +73,7 @@
 
   app.controller('PostItem', function($scope, $http, $stateParams) {
 
-    var category = $stateParams.value;
+    var category = $stateParams.id;
     $scope.params = $stateParams;
 
 
@@ -165,8 +165,7 @@ app.controller('LoginController', function($scope, $http, $stateParams, $cordova
 
 app.controller('TopicList', function($scope, $http, $stateParams) {
 
-    var category = $stateParams.value;
-
+    var category = $stateParams.id;
     $scope.params = $stateParams;
 
     $http.get('http://localhost:8080/submissions/questions?categoryId='+category).
