@@ -1,14 +1,14 @@
-	<!-- Card Section  -->
+	<!-- Question Card Section  -->
    <div class="card">
   <div class="item item-divider">
    <span class="left item-text-wrap"><h2>{{names.title}}</h2></span>
 
 
-<div class="list"> 
+<div class="list" style="text-align:center"> 
  <span class="right" >
    <button  ng-hide="isVotedOn(names)" class="button button-icon  ion-chevron-up" ng-click="vote(names, true)" ></button>
    <item class="item">{{names.score | scoreFilter}}</item>
- <button ng-hide="isVotedOn(names)" class="button button-icon ion-chevron-down" ng-click="vote(names, false)"></button>
+ <button ng-hide="isVotedOn(names)"class="button button-icon ion-chevron-down" ng-click="vote(names, false)"></button>
  </span>
 </div>
  
@@ -24,20 +24,21 @@
 
 
 
-	<!-- Card Section  -->
+	<!-- Answer Card Section  -->
    <div class="card" ng-repeat="answer in names.answers">
   <div class="item item-divider">
    <span class="left"><h1>{{answer.title}}</h1></span>
 
  
-  <span class="right" ng-hide="isVotedOn(answer)">
-   <button class="button button-icon  ion-chevron-up" ng-click="vote(answer, true)" ></button>
- <button class="button button-icon ion-chevron-down" ng-click="vote(answer, false)"></button>
- </span>
 
- <span class="right"> 
-  {{answer.score | scoreFilter}}
-</span>
+
+<div class="list" style="text-align:center"> 
+ <span class="right" >
+   <button  ng-hide="isVotedOn(answer)" class="button button-icon  ion-chevron-up" ng-click="vote(answer, true)" ></button>
+   <item class="item">{{answer.score | scoreFilter}}</item>
+ <button ng-hide="isVotedOn(answer)"class="button button-icon ion-chevron-down" ng-click="vote(answer, false)"></button>
+ </span>
+</div>
 
   </div>
   <div class="item item-text-wrap">
