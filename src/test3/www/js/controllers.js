@@ -139,6 +139,9 @@ app.controller('PostItem', function($scope, $http, $stateParams, $location, conf
 
       $scope.isVotedOn = function(submission) {
 
+        if(!submission)
+          return true;
+
         return submission.voteIds.indexOf(localStorage['identity']) != -1;
 
       }
