@@ -72,6 +72,8 @@ module.exports = function(server) {
       // Uses the Mongoose DB connection to find it
       var x = req.params;
 
+      console.log(x);
+
       // Setup defaults
       x.submissionDate = new Date();
       x.categoryId = x.categoryId || 0;

@@ -34,7 +34,6 @@
 // Imports
 var restify = require('restify');
 var mongoose = require('mongoose');
-var hooks = require("./hooks");
 
 var Schema = mongoose.Schema;
 
@@ -49,30 +48,14 @@ function respond(req, res, next) {
   next();
 }
 
-var server = restify.createServer(
-  {
-   formatters: {
-        "application/hal+json": function (req, res, body) {
-            return res.formatters["application/json"](req, res, body);
-        }
-    }
-  }
-  );
+var server = restify.createServer();
 
-var RESOURCES = Object.freeze({
-    INITIAL: "/",
-    TOKEN: "/token",
-    PUBLIC: "/public",
-    SECRET: "/secret",
-    SCOPED: "/scoped"
-});
 
 // Setup some basic plugins and parsers for the restify server
 server
   .use(restify.fullResponse())
-  .use(restify.bodyParser({ mapParams: false }))
-  .use(restify.queryParser())
-  .use(restify.authorizationParser());
+  .use(restify.bodyParser())
+  .use(restify.queryParser());
 
 
 var dbConnection = mongoose.connect('mongodb://localhost/test');
@@ -87,83 +70,6 @@ server.use(function(req, res, next){
   req.db = mongoose;
   next();
 })
-
-var restify = require("restify");
-var restifyOAuth2 = require("restify-oauth2");
-
-
-server.get(RESOURCES.INITIAL, function (req, res) {
-    var response = {
-        _links: {
-            self: { href: RESOURCES.INITIAL },
-            "http://localhost:8080/public": { href: RESOURCES.PUBLIC }
-        }
-    };
-
-    if (req.clientId) {
-        response._links["http://rel.example.com/secret"] = { href: RESOURCES.SECRET };
-
-        if (req.scopesGranted.indexOf("two") !== -1) {
-            response._links["http://rel.example.com/scoped"] = { href: RESOURCES.SCOPED };
-        }
-    } else {
-        response._links["oauth2-token"] = {
-            href: RESOURCES.TOKEN,
-            "grant-types": "client_credentials",
-            "token-types": "bearer"
-        };
-    }
-
-    res.contentType = "application/hal+json";
-    res.send(response);
-});
-
-server.get(RESOURCES.PUBLIC, function (req, res) {
-    res.send({
-        "public resource": "is public",
-        "it's not even": "a linked HAL resource",
-        "just plain": "application/json",
-        "personalized message": req.clientId ? "hi, " + req.clientId + "!" : "hello stranger!"
-    });
-});
-
-server.get(RESOURCES.SECRET, function (req, res) {
-    if (!req.clientId) {
-        return res.send("Hear be dragons! Rawr! 400");
-    }
-
-    var response = {
-        "clients with a token": "have access to this secret data",
-        _links: {
-            self: { href: RESOURCES.SECRET },
-            parent: { href: RESOURCES.INITIAL }
-        }
-    };
-
-    res.contentType = "application/hal+json";
-    res.send(response);
-});
-
-server.get(RESOURCES.SCOPED, function (req, res) {
-    if (!req.clientId) {
-        return res.sendUnauthenticated();
-    }
-
-    if (req.scopesGranted.indexOf("two") === -1) {
-        return res.sendUnauthorized();
-    }
-
-    var response = {
-        "clients with a token that is scoped correctly": "have access to this scoped data",
-        _links: {
-            self: { href: RESOURCES.SCOPED },
-            parent: { href: RESOURCES.INITIAL }
-        }
-    };
-
-    res.contentType = "application/hal+json";
-    res.send(response);
-});
 
 
 

@@ -1,6 +1,7 @@
   var app = angular.module('myApp', ['ionic', 'ngCordova']);
   app.config(function($stateProvider, $urlRouterProvider) {
 
+
     $urlRouterProvider.otherwise('/login')
 
     $stateProvider
@@ -125,18 +126,24 @@
 app.controller('LoginController', function($scope, $http, $stateParams, $cordovaOauth) {
 
 
-  $scope.googleLogin = function() {
-        $cordovaOauth.google("545399189789-3121jso4tgpsn2bgqlm47r0374duh51v.apps.googleusercontent.com", ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
-            console.log(result);
-            var token = access_token;
 
-            // The user has authorized us, so we submit these
-            alert(token);
 
-        }, function(error) {
-            console.log(error);
-        });
+  $scope.login = function() {
+        // Do stuff
+        localStorage["identity"] = $scope.identity;
     }
+
+    $scope.checkIdentity = function() {
+        var identity = localStorage["identity"];
+        if(identity) {
+          $http.defaults.headers.common.Authorization = identity;
+        }
+        else {
+          alert("dfdf");
+        }
+    }
+
+    $scope.checkIdentity();
 
 })
 
