@@ -19,6 +19,8 @@ module.exports = function(server) {
 
       var filter = {};
 
+
+
       for(var k in req.query)
         filter[k] = req.query[k];
 
@@ -71,8 +73,6 @@ module.exports = function(server) {
 
       // Uses the Mongoose DB connection to find it
       var x = req.params;
-
-      console.log(x);
 
       // Setup defaults
       x.submissionDate = new Date();
