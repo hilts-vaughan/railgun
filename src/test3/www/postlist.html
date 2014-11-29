@@ -1,23 +1,38 @@
 	<!-- Question Card Section  -->
    <div class="card">
   <div class="item item-divider">
+
+  <!-- Put the title in keep it to the left-->
    <span class="left item-text-wrap"><h2>{{names.title}}</h2></span>
 
 
+  <!--This segment handles the buttons -->
+ 
+  <!--Close the item dividor for the first section-->
+  </div>
+<div>
+  <!--This places the description section-->
+  <span class="left item-text-wrap">
+ {{names.body}} </div>
+<span class="right" >
 <div class="list" style="text-align:center"> 
- <span class="right" >
+
+
+  <!--If the button is pushed it sets the two voteing buttonsto invisible and changes score-->
    <button  ng-hide="isVotedOn(names)" class="button button-icon  ion-chevron-up" ng-click="vote(names, true)" ></button>
+  
+  <!--Puts the score one the screen between the two buttons-->
    <item class="item">{{names.score | scoreFilter}}</item>
  <button ng-hide="isVotedOn(names)"class="button button-icon ion-chevron-down" ng-click="vote(names, false)"></button>
+ 
+</div>
  </span>
 </div>
- 
-  </div>
-  <div class="item item-text-wrap">
- {{names.body}} </div>
+  <!--This displays the posters name-->
   <div class="item item-divider">
   <span class="left" style="color: darkgray; font-size: 12px;">Posted by: {{names.author}}</span>
 
+  <!--This incorperates a rebort button into the last section-->
   <span class="right" > <a href="" ng-click="show_Popup()">Report</a></span>
   </div>
 </div>
@@ -27,22 +42,29 @@
 	<!-- Answer Card Section  -->
    <div class="card" ng-repeat="answer in names.answers">
   <div class="item item-divider">
+
+  <!-- This puts the answer in the left side of the tobbox-->
    <span class="left"><h1>{{answer.title}}</h1></span>
 
  
 
 
-<div class="list" style="text-align:center"> 
+ 
+  <!--This is the voting system for the answers-->
+<div>
+  <span class="left item-text-wrap">
+ {{answer.body}} </div>
+  <!--This is the voting system for the answers-->
  <span class="right" >
+  <div class="list" style="text-align:center"> 
+
    <button  ng-hide="isVotedOn(answer)" class="button button-icon  ion-chevron-up" ng-click="vote(answer, true)" ></button>
    <item class="item">{{answer.score | scoreFilter}}</item>
  <button ng-hide="isVotedOn(answer)"class="button button-icon ion-chevron-down" ng-click="vote(answer, false)"></button>
+</div>
  </span>
 </div>
 
-  </div>
-  <div class="item item-text-wrap">
- {{answer.body}} </div>
   <div class="item item-divider">
   <span class="left" style="color: darkgray; font-size: 12px;">Posted by: {{answer.author}}</span>
   <span class="right" style="color: darkgray; font-size: 12px;">{{answer.submissionDate | date: 'medium'}}</span>
