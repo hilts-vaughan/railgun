@@ -11,9 +11,10 @@
   "dependencies": {
     "mongoose": "~3.8.19",
     "mongoose-auto-increment": "^3.2.0",
+    "node-gcm": "^0.9.12",
+    "passport-google": "~0.3.0",
     "path": "~0.4.9",
     "restify": "~2.8.3",
-    "passport-google": "~0.3.0",
     "restify-oauth2": "~4.0.0",
     "underscore": "~1.7.0"
   }

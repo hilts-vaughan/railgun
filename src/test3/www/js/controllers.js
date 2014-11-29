@@ -11,6 +11,59 @@ app.filter('scoreFilter', function() {
   };
 })
 
+
+app.controller('IndexController', function($scope, $cordovaPush, $ionicPlatform, config) {
+
+
+    var androidConfig = {
+      "senderID":"gentle-epoch-778",
+    };
+
+      $scope.notificationsCount = 0; 
+
+      $ionicPlatform.ready(function() {
+
+                if(ionic.Platform.isWebView()) {
+
+                  // This controller loads on every page and controls the frame. Register our push notifications.
+                  $cordovaPush.register(androidConfig).then(function(result) {
+                    // Success!
+                    // Hook into notifications
+                    $scope.notificationsCount = 0;
+                    localStorage['pushId'] = result; 
+                    alert(result);
+
+                    var payload = {
+                      token: result
+                    };
+
+                    $http.post(config.serverUrl + 'notifications/register', payload).
+                    success(function(data, status, headers, config) {
+                        alert("Token has been registered succesfully.");
+                    }).
+                    error(function(data, status, headers, config) {
+            
+                    });       
+
+                    
+                  }, function(err) {
+                    
+                    // Not able to register, silently don't care
+
+                  });
+
+
+
+              }
+
+  });
+
+
+
+
+
+})
+
 app.controller('PostItem', function($scope, $http, $stateParams, $location, config) {
 
       var category = $stateParams.id;
@@ -169,12 +222,13 @@ app.controller('PostItem', function($scope, $http, $stateParams, $location, conf
               buttons: [{
                   text: '<font size="1">Spam</font>',
                   onTap: function(e) {
-                      alert('Spam - Post ID:' + $scope.names._id);
+					  window.open('mailto:reporting@helpmelaurier.com?subject=Report Post: Spam&body=Do Not Remove [: Post Title: '+$scope.names.title+'ID: '+$scope.names._id+'Category: '+$scope.names.categoryId+']');
                   }
               }, {
                   text: '<font size="1">Language</font>',
                   onTap: function(e) {
-                      alert('Language - Post ID:' + $scope.names._id);
+                      window.open('mailto:reporting@helpmelaurier.com?subject=Report Post: Language&body=Do Not Remove [: Post Title: '+$scope.names.title+'ID: '+$scope.names._id+'Category: '+$scope.names.categoryId+']');
+                  
                   }
               }, {
                   text: '<font size="1">Cancel</font>',
