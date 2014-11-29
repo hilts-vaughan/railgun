@@ -24,16 +24,17 @@ module.exports = function(server) {
       // Setup defaults
       x.submissionDate = new Date();
       x.parentQuestionId = req.params.id;
-      
+      x.author = req.params.identity;
 
 
-      var newAnswer = new AnswerSubmission(x);  
+
+      var newAnswer = new AnswerSubmission(x);
 
       QuestionSubmission.findById(req.params.id, function(exception, question) {
 
-          
-          if(question) {            
-                newAnswer.save(function(exception, data) {         
+
+          if(question) {
+                newAnswer.save(function(exception, data) {
                   res.send(x);
                 });
           }
@@ -44,7 +45,7 @@ module.exports = function(server) {
 
       });
 
-     
+
 
 
   });
