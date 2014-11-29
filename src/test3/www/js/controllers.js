@@ -159,3 +159,26 @@ app.controller('PostItem', function($scope, $http, $stateParams, $location, conf
       };
 
   });
+
+  app.controller('AlertController', function($scope, $http, $stateParams, config) {
+           var SampAns = {
+              answer: ['answer1','answer2','answer3']
+            }
+           var SampQuestions ={
+              question: ['question1','question2','question3']
+            }
+            $scope.SampCurrent ={
+              current: SampQuestions.question
+            }
+            $scope.SetQuest = function() {
+          $scope.SampCurrent.current=SampQuestions.question
+         
+      }
+            $scope.SetAns = function() {
+          $scope.SampCurrent.current=SampAns.answer   
+         
+      }
+
+
+  })
+

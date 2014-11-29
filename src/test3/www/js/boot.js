@@ -28,7 +28,8 @@
 
       .state('alerts', {
           url: '/alerts',
-          templateUrl: 'alerts.html'
+          templateUrl: 'alerts.html',
+          controller: "AlertController"
       })
 
       .state('login', {

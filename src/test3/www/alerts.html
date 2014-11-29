@@ -1,24 +1,45 @@
-  <!-- Notification Section  -->	  
-	 <div class="button-bar" >
-  <a class="button button-positive active">Recomended</a>
-  <a class="button button-positive">Answered</a>
-</div>
-	  <div class="list">
+ <!-- Notification Section  -->   
+  <!-- Stuff that works but not liked
+    <div class="list">
 
   <div class="item item-divider" align="center">
-    Recomended/Answered Questions
+    Questions
   </div>
+
   <a class="item" href="#">
     Question 1
   </a>
     <a class="item" href="#">
     Question 2
   </a>
-    <a class="item" href="#">
-    Question 3
-  </a>
-    <a class="item" href="#">
-    Question 4
-  </a>
 
+ <div class="item item-divider" align="center">
+    Answers
+  </div>
+    <a class="item" href="#">
+    Answer 3
+  </a>
+    <a class="item" href="#">
+    Answer 4
+  </a>
+</div>
+-->
+
+
+
+
+  <!-- Notification Section  -->	  
+	 <div class="button-bar" >
+  <a class="button button-positive" ng-click="SetQuest()">Recomended</a>
+  <a class="button button-positive"ng-click="SetAns()">Answered</a>
+</div>
+	  <div class="list">
+
+  <div class="item item-divider" align="center">
+    Recomended/Answered Questions
+  </div>
+  <ul>
+  <a class="item" href="#" ng-repeat="x in SampCurrent.current">{{x}}
+  </a>
+</ul>
 </div>
