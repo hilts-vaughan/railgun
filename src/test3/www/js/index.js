@@ -62,10 +62,6 @@
       templateUrl: 'profile.html'
     });
 
-
-
-
-
   });
 
 
@@ -90,7 +86,10 @@
 	$http.post('http://localhost:8080/submissions/questions', question).
   success(function(data, status, headers, config) {
    alert('Succeed');
-  });
+  }).
+    error(function(data, status, headers, config) {
+	alert("Connection Failed");
+    });
     };
   })
 
@@ -113,7 +112,10 @@
 	$http.post('http://localhost:8080/submissions/answers/'+id, question).
   success(function(data, status, headers, config) {
    alert('Succeed');
-  });
+  }).
+    error(function(data, status, headers, config) {
+	alert("Connection Failed");
+    });
     };
 
 
@@ -160,13 +162,12 @@ app.controller('TopicList', function($scope, $http, $stateParams) {
 	  console.log(data);
     }).
     error(function(data, status, headers, config) {
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
+	alert("Connection Failed");
     });
 
 })
 
-   app.controller('PostList', function($scope, $http, $stateParams) {
+   app.controller('PostList', function($scope, $http, $stateParams, $ionicPopup) {
 
     var questionId = $stateParams.id;
 	 $scope.params = $stateParams;
@@ -177,9 +178,29 @@ app.controller('TopicList', function($scope, $http, $stateParams) {
     $scope.names = data;
   }).
   error(function(data, status, headers, config) {
-		// called asynchronously if an error occurs
-    // or server returns response with an error status.
+	alert("Connection Failed");
 	  });
+	  
+	  
+	  $scope.show_Popup = function() {
+  $scope.data = {}
+  // An elaborate, custom popup
+  var myPopup = $ionicPopup.show({
+    title: 'Report Post',
+    subTitle: 'Please select a report reason.',
+    scope: $scope,
+    buttons: [
+      {text: '<font size="1">Spam</font>',onTap: function(e) {       alert('Spam - Post ID:'+$scope.names._id);    }},
+      {text: '<font size="1">Language</font>',onTap: function(e) {   alert('Language - Post ID:'+$scope.names._id);    }},
+	  {text: '<font size="1">Cancel</font>',onTap: function(e) {  }},
+    ]
+  });
+  myPopup.then(function(res) {
+    console.log('Tapped!', res);
+  });
+
+ };
+	  
  });
 
 
@@ -190,33 +211,4 @@ app.controller('TopicList', function($scope, $http, $stateParams) {
       category: 0
     };
 
-
-
  });
-
-  angular.module('mySuperApp', ['ionic'])
-.controller('PopupCtrl',function($scope, $ionicPopup, $timeout) {
-// Triggered on a button click, or some other target
-$scope.show_Popup = function() {
-  $scope.data = {}
-  // An elaborate, custom popup
-  var myPopup = $ionicPopup.show({
-    title: 'Report Reason',
-    subTitle: 'Please use normal things',
-    scope: $scope,
-    buttons: [
-      {	  text: '<b>Stupid Person</b>',        onTap: function(e) {        }      },
-      {	  text: '<b>Stupid Question</b>',        onTap: function(e) {        }      },
-	  {	  text: '<b>I Dun Goofd</b>',        onTap: function(e) {        }      },
-    ]
-  });
-  myPopup.then(function(res) {
-    console.log('Tapped!', res);
-  });
-
- };
-
-
-});
-
-
