@@ -11,6 +11,53 @@ app.filter('scoreFilter', function() {
   };
 })
 
+
+app.controller('IndexController', function($scope, $cordovaPush, $ionicPlatform, config) {
+
+
+    var androidConfig = {
+      "senderID":"gentle-epoch-778",
+    };
+
+      $scope.notificationsCount = 0; 
+
+      if(ionic.Platform.isWebView()) {
+
+        // This controller loads on every page and controls the frame. Register our push notifications.
+        $cordovaPush.register(androidConfig).then(function(result) {
+          // Success!
+          // Hook into notifications
+          $scope.notificationsCount = 0;
+          localStorage['pushId'] = result; 
+          alert(result);
+
+          var payload = {
+            token: result
+          };
+
+          $http.post(config.serverUrl + 'notifications/register', payload).
+          success(function(data, status, headers, config) {
+              alert("Token has been registered succesfully.");
+          }).
+          error(function(data, status, headers, config) {
+  
+          });       
+
+          
+        }, function(err) {
+          
+          // Not able to register, silently don't care
+
+        });
+
+    }
+
+
+
+
+
+})
+
 app.controller('PostItem', function($scope, $http, $stateParams, $location, config) {
 
       var category = $stateParams.id;

@@ -20,7 +20,7 @@
       <script src="js/boot.js"></script>
 	  <script src="js/controllers.js"></script>
    </head>
-   <body ng-app="myApp">
+   <body ng-app="myApp" ng-controller="IndexController">
 
 
       <!-- Header Section  -->
@@ -33,7 +33,7 @@
          <h1 class="title">Help Me! Laurier</h1>
          <div class="buttons">
             <!--This button is for taking you to the alerts page -->
-            <button class="button badge badge-assertive" ui-sref="alerts">1</button>
+            <button class="button badge badge-assertive" ui-sref="alerts">{{notificationsCount}}</button>
             <!--This button if for taking you to the profile page -->
             <button class="button button-icon ion-person" ui-sref="profile"></button>
          </div>

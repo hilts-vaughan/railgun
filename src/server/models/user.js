@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
     name : String,
-    registrationDate: Date
+    registrationDate: Date,
+    pushToken : String
 });
 
 // Duplicate the ID field.

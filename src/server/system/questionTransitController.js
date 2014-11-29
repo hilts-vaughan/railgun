@@ -3,5 +3,17 @@
  */
  */
 module.exports = function() {
+
+	/*
+		Takes a new question has been sent from another source and requests a processing.
+		@param	question 	The new question that needs to be processed
+	 */
+	processNewQuestion: function(question) {
+
+
+	}
+
+
+	
 	
 }

@@ -32,6 +32,22 @@ module.exports = function(server) {
 
       });
 
+  });
+
+
+  server.post('/notifications/register', function (req, res, next) {
+    
+        var identity = req.headers['auth']; 
+        var pushToken = req.params.token;
+
+         User.find({name: identity}, function(exception, user) {
+
+            // Work with our user
+            user.pushToken = pushToken;
+            user.save();
+
+            res.send({status: true});
+         });
 
 
   });
