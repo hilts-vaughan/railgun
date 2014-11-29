@@ -4,7 +4,7 @@
    <span class="left item-text-wrap"><h2>{{names.title}}</h2></span>
 
 
-<div class="list" style="text-align:center"> 
+<div class="list" id="textCenter"> 
  <span class="right" >
    <button  ng-hide="isVotedOn(names)" class="button button-icon  ion-chevron-up" ng-click="vote(names, true)" ></button>
    <item class="item">{{names.score | scoreFilter}}</item>
@@ -16,7 +16,7 @@
   <div class="item item-text-wrap">
  {{names.body}} </div>
   <div class="item item-divider">
-  <span class="left" style="color: darkgray; font-size: 12px;">Posted by: {{names.author}}</span>
+  <span class="left" id="author">Posted by: {{names.author}}</span>
 
   <span class="right" > <a href="" ng-click="show_Popup()">Report</a></span>
   </div>
@@ -32,7 +32,7 @@
  
 
 
-<div class="list" style="text-align:center"> 
+<div class="list" id="textCenter"> 
  <span class="right" >
    <button  ng-hide="isVotedOn(answer)" class="button button-icon  ion-chevron-up" ng-click="vote(answer, true)" ></button>
    <item class="item">{{answer.score | scoreFilter}}</item>
@@ -44,8 +44,8 @@
   <div class="item item-text-wrap">
  {{answer.body}} </div>
   <div class="item item-divider">
-  <span class="left" style="color: darkgray; font-size: 12px;">Posted by: {{answer.author}}</span>
-  <span class="right" style="color: darkgray; font-size: 12px;">{{answer.submissionDate | date: 'medium'}}</span>
+  <span class="left"  id="author">Posted by: {{answer.author}}</span>
+  <span class="right" id="author">{{answer.submissionDate | date: 'medium'}}</span>
   </div>
 </div>
 
