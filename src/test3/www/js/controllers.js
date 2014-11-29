@@ -127,11 +127,21 @@ app.controller('PostItem', function($scope, $http, $stateParams, $location, conf
         }
 
         $http.post(config.serverUrl + 'votes/' + submission._id, payload).success(function(data, status, headers, config) {
-            alert(data.status);
+            
+            if(data.status) {
+              submission.voteIds.push(localStorage['identity']);
+              submission.score = data.score; 
+            }
+
         });
 
       }
 
+      $scope.isVotedOn = function(submission) {
+
+        return submission.voteIds.indexOf(localStorage['identity']) != -1;
+
+      }
 
       $scope.show_Popup = function() {
           $scope.data = {}

@@ -50,7 +50,7 @@ module.exports = function(server) {
                 submission.save();
 
                 // Let the user know
-                res.send({status: true});
+                res.send({status: true, score: submission.score});
 
                 console.log(identity + " has voted submission with Id " + id);
 

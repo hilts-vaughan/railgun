@@ -2,10 +2,17 @@
    <div class="card">
   <div class="item item-divider">
    <span class="left item-text-wrap"><h2>{{names.title}}</h2></span>
-  <span class="right">
+
+ 
+ <span class="right" ng-hide="isVotedOn(names)">
    <button class="button button-icon  ion-chevron-up" ng-click="vote(names, true)" ></button>
  <button class="button button-icon ion-chevron-down" ng-click="vote(names, false)"></button>
  </span>
+
+ <span class="right"> 
+  {{names.score}}
+</span>
+
   </div>
   <div class="item item-text-wrap">
  {{names.body}} </div>
@@ -22,10 +29,17 @@
    <div class="card" ng-repeat="answer in names.answers">
   <div class="item item-divider">
    <span class="left"><h1>{{answer.title}}</h1></span>
-  <span class="right">
+
+ 
+  <span class="right" ng-hide="isVotedOn(answer)">
    <button class="button button-icon  ion-chevron-up" ng-click="vote(answer, true)" ></button>
  <button class="button button-icon ion-chevron-down" ng-click="vote(answer, false)"></button>
  </span>
+
+ <span class="right"> 
+  {{answer.score}}
+</span>
+
   </div>
   <div class="item item-text-wrap">
  {{answer.body}} </div>
