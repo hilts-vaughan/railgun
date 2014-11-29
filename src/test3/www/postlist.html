@@ -3,8 +3,8 @@
   <div class="item item-divider">
    <span class="left item-text-wrap"><h2>{{names.title}}</h2></span>
   <span class="right">
-   <button class="button button-icon  ion-chevron-up" ng-click="vote_Up()" ></button>
- <button class="button button-icon ion-chevron-down" ng-click="vote_Down()"></button>
+   <button class="button button-icon  ion-chevron-up" ng-click="vote(names, true)" ></button>
+ <button class="button button-icon ion-chevron-down" ng-click="vote(names, false)"></button>
  </span>
   </div>
   <div class="item item-text-wrap">
@@ -23,8 +23,8 @@
   <div class="item item-divider">
    <span class="left"><h1>{{answer.title}}</h1></span>
   <span class="right">
-   <button class="button button-icon  ion-chevron-up" ng-click="vote_Up()" ></button>
- <button class="button button-icon ion-chevron-down" ng-click="vote_Down()"></button>
+   <button class="button button-icon  ion-chevron-up" ng-click="vote(answer, true)" ></button>
+ <button class="button button-icon ion-chevron-down" ng-click="vote(answer, false)"></button>
  </span>
   </div>
   <div class="item item-text-wrap">

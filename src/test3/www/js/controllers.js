@@ -120,6 +120,19 @@ app.controller('PostItem', function($scope, $http, $stateParams, $location, conf
       });
 
 
+      $scope.vote = function(submission, wasUpVote) {
+
+        var payload = {
+          isUpvote: wasUpVote
+        }
+
+        $http.post(config.serverUrl + 'votes/' + submission._id, payload).success(function(data, status, headers, config) {
+            alert(data.status);
+        });
+
+      }
+
+
       $scope.show_Popup = function() {
           $scope.data = {}
               // An elaborate, custom popup

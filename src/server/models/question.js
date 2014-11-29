@@ -10,7 +10,8 @@ var questionSchema = new Schema({
     author   : String,
     status   : {type: Number, default: 0},
     submissionDate   : Date,
-    categoryId : {type: Number, default: 0}
+    categoryId : {type: Number, default: 0},
+    voteIds : []
 });
 
 
