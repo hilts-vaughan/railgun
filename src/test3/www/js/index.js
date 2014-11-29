@@ -4,7 +4,7 @@
 
     $urlRouterProvider.otherwise('/login')
 
-    $http.defaults.headers.common['auth'] = localStorage['identity'];
+
 
     $stateProvider
     .state('index', {
