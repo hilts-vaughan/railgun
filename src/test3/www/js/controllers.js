@@ -1,7 +1,7 @@
 app.filter('scoreFilter', function() {
   return function(input) {
 
-    var sign = '-'
+    var sign = ''
     if(input > 0) {
       sign = '+';
     }
