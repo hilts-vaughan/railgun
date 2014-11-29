@@ -77,12 +77,12 @@ module.exports = function(server) {
       // Setup defaults
       x.submissionDate = new Date();
       x.categoryId = x.categoryId || 0;
-
       x.author = req.headers['auth'];
 
       var newQuestion = new QuestionSubmission(x);
 
       newQuestion.save(function(exception, data) {
+        x.id = data._id;
         res.send(x);
       });
 

@@ -76,7 +76,7 @@
 
 
 
-  app.controller('PostItem', function($scope, $http, $stateParams) {
+  app.controller('PostItem', function($scope, $http, $stateParams, $location) {
 
     var category = $stateParams.id;
     $scope.params = $stateParams;
@@ -92,7 +92,8 @@
 
 	$http.post('http://localhost:8080/submissions/questions', question).
   success(function(data, status, headers, config) {
-   alert('Succeed');
+      console.log(data);
+      $location.path("/postlist/" + data.id);
   }).
     error(function(data, status, headers, config) {
 	alert("Connection Failed");
@@ -102,7 +103,7 @@
 
 
 
-    app.controller('ReplyItem', function($scope, $http, $stateParams) {
+    app.controller('ReplyItem', function($scope, $http, $stateParams, $location) {
     var id = $stateParams.id;
 	var title= $stateParams.title
 		$scope.Title=title;
@@ -118,7 +119,7 @@
 
 	$http.post('http://localhost:8080/submissions/answers/'+id, question).
   success(function(data, status, headers, config) {
-   alert('Succeed');
+    $location.path("/postlist/" + data.parentQuestionId);
   }).
     error(function(data, status, headers, config) {
 	alert("Connection Failed");

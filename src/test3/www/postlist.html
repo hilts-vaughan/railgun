@@ -1,7 +1,7 @@
 	<!-- Card Section  -->
    <div class="card">
   <div class="item item-divider">
-   <span class="left"><h1>{{names.title}}</h1></span>
+   <span class="left item-text-wrap"><h1>{{names.title}}</h1></span>
   <span class="right">
    <button class="button button-icon  ion-chevron-up" ng-click="vote_Up()" ></button>
  <button class="button button-icon ion-chevron-down" ng-click="vote_Down()"></button>
@@ -11,7 +11,7 @@
  {{names.body}} </div>
   <div class="item item-divider">
   <span class="left">-Posted by: {{names.author}}</span>
-  
+
   <span class="right" > <a href="" ng-click="show_Popup()">Report</a></span>
   </div>
 </div>
@@ -38,4 +38,4 @@
 
 <!-- Reply Button Section  -->
 	<div class="col col-80 col-offset-10"><button class="button button-full button-positive" ui-sref="reply({id:names._id, title:names.title})">Reply</button></div>
-	
+
