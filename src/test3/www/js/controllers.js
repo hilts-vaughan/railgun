@@ -21,36 +21,42 @@ app.controller('IndexController', function($scope, $cordovaPush, $ionicPlatform,
 
       $scope.notificationsCount = 0; 
 
-      if(ionic.Platform.isWebView()) {
+      $ionicPlatform.ready(function() {
 
-        // This controller loads on every page and controls the frame. Register our push notifications.
-        $cordovaPush.register(androidConfig).then(function(result) {
-          // Success!
-          // Hook into notifications
-          $scope.notificationsCount = 0;
-          localStorage['pushId'] = result; 
-          alert(result);
+                if(ionic.Platform.isWebView()) {
 
-          var payload = {
-            token: result
-          };
+                  // This controller loads on every page and controls the frame. Register our push notifications.
+                  $cordovaPush.register(androidConfig).then(function(result) {
+                    // Success!
+                    // Hook into notifications
+                    $scope.notificationsCount = 0;
+                    localStorage['pushId'] = result; 
+                    alert(result);
 
-          $http.post(config.serverUrl + 'notifications/register', payload).
-          success(function(data, status, headers, config) {
-              alert("Token has been registered succesfully.");
-          }).
-          error(function(data, status, headers, config) {
-  
-          });       
+                    var payload = {
+                      token: result
+                    };
 
-          
-        }, function(err) {
-          
-          // Not able to register, silently don't care
+                    $http.post(config.serverUrl + 'notifications/register', payload).
+                    success(function(data, status, headers, config) {
+                        alert("Token has been registered succesfully.");
+                    }).
+                    error(function(data, status, headers, config) {
+            
+                    });       
 
-        });
+                    
+                  }, function(err) {
+                    
+                    // Not able to register, silently don't care
 
-    }
+                  });
+
+
+
+              }
+
+  });
 
 
 
