@@ -20,6 +20,7 @@ module.exports = function(server) {
       var identity = req.params.identity;
       req.params.name = req.params.identity;
       req.params.score = 0;
+      req.params.state = 0;
 
       console.log(req.headers.xero);
 

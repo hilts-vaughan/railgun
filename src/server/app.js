@@ -42,12 +42,6 @@ var autoIncrement = require('mongoose-auto-increment');
 var path = require('path')
 
 
-
-function respond(req, res, next) {
-  res.send('hello ' + req.params.name);
-  next();
-}
-
 restify.CORS.ALLOW_HEADERS.push('authorization');
 var server = restify.createServer();
 
