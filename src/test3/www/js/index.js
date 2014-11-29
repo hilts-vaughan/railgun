@@ -1,4 +1,9 @@
   var app = angular.module('myApp', ['ionic', 'ngCordova']);
+
+  app.run(function($http) {
+    $http.defaults.headers.common['auth'] = localStorage['identity'];
+  });
+
   app.config(function($stateProvider, $urlRouterProvider) {
 
 
