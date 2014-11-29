@@ -15,10 +15,11 @@
   <span class="left item-text-wrap">
  {{names.body}} </div>
 <span class="right" >
-<div class="list" style="text-align:center"> 
+<div class="list" id="textCenter"> 
 
 
   <!--If the button is pushed it sets the two voteing buttonsto invisible and changes score-->
+
    <button  ng-hide="isVotedOn(names)" class="button button-icon  ion-chevron-up" ng-click="vote(names, true)" ></button>
   
   <!--Puts the score one the screen between the two buttons-->
@@ -30,7 +31,7 @@
 </div>
   <!--This displays the posters name-->
   <div class="item item-divider">
-  <span class="left" style="color: darkgray; font-size: 12px;">Posted by: {{names.author}}</span>
+  <span class="left" id="author">Posted by: {{names.author}}</span>
 
   <!--This incorperates a rebort button into the last section-->
   <span class="right" > <a href="" ng-click="show_Popup()">Report</a></span>
@@ -49,14 +50,15 @@
  
 
 
- 
+
   <!--This is the voting system for the answers-->
 <div>
   <span class="left item-text-wrap">
  {{answer.body}} </div>
   <!--This is the voting system for the answers-->
+
  <span class="right" >
-  <div class="list" style="text-align:center"> 
+  <div class="list" id="textCenter"> 
 
    <button  ng-hide="isVotedOn(answer)" class="button button-icon  ion-chevron-up" ng-click="vote(answer, true)" ></button>
    <item class="item">{{answer.score | scoreFilter}}</item>
@@ -66,8 +68,8 @@
 </div>
 
   <div class="item item-divider">
-  <span class="left" style="color: darkgray; font-size: 12px;">Posted by: {{answer.author}}</span>
-  <span class="right" style="color: darkgray; font-size: 12px;">{{answer.submissionDate | date: 'medium'}}</span>
+  <span class="left"  id="author">Posted by: {{answer.author}}</span>
+  <span class="right" id="author">{{answer.submissionDate | date: 'medium'}}</span>
   </div>
 </div>
 
