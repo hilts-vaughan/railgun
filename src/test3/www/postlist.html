@@ -3,16 +3,15 @@
   <div class="item item-divider">
    <span class="left item-text-wrap"><h2>{{names.title}}</h2></span>
 
- 
- <span class="right" ng-hide="isVotedOn(names)">
-   <button class="button button-icon  ion-chevron-up" ng-click="vote(names, true)" ></button>
- <button class="button button-icon ion-chevron-down" ng-click="vote(names, false)"></button>
+
+<div class="list"> 
+ <span class="right" >
+   <button  ng-hide="isVotedOn(names)" class="button button-icon  ion-chevron-up" ng-click="vote(names, true)" ></button>
+   <item class="item">{{names.score | scoreFilter}}</item>
+ <button ng-hide="isVotedOn(names)" class="button button-icon ion-chevron-down" ng-click="vote(names, false)"></button>
  </span>
-
- <span class="right"> 
-  {{names.score | scoreFilter}}
-</span>
-
+</div>
+ 
   </div>
   <div class="item item-text-wrap">
  {{names.body}} </div>
