@@ -11,40 +11,28 @@
 */
 
 var Notification = require('./../models/notification');
+var User = require('./../models/user');
 
 module.exports = function(server) {
 
 
-  /*
-      Purpose: Provides a set of reports pulled down from the active database that are accomapnied to a certain question type.
-
-      Notes:   Resources provided
-  */
-  server.get('/notifications', function (req, res, next) {
-    
-
-      var filter = {};
-
-      for(var k in req.query)
-        filter[k] = req.query[k]; 
-
-      Notification.find(filter, function(exception, notifications) {
-
-      });
-
-  });
-
 
   server.post('/notifications/register', function (req, res, next) {
-    
-        var identity = req.headers['auth']; 
+
+        var identity = req.headers['auth'];
         var pushToken = req.params.token;
 
-         User.find({name: identity}, function(exception, user) {
+        console.log("Attempting to find user w/ identity " + identity + " and using token " + pushToken);
+
+         User.findOne({name: identity}, function(exception, user) {
+
+            console.log(exception);
 
             // Work with our user
             user.pushToken = pushToken;
             user.save();
+
+            console.log(identity + " has been registered with token " + pushToken);
 
             res.send({status: true});
          });

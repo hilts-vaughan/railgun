@@ -14,12 +14,14 @@
       <!-- cordova script (this will be a 404 during development) -->
       <script src="js/PushNotification.js"></script>
       <script src="js/ng-cordova.js"></script>
-      <script src="cordova.js"></script>
+
 
       <!-- your app's js -->
       <script src="js/app.js"></script>
       <script src="js/boot.js"></script>
 	  <script src="js/controllers.js"></script>
+
+      <script src="cordova.js"></script>
    </head>
    <body ng-app="myApp" ng-controller="IndexController">
 
@@ -38,7 +40,7 @@
             <!--This button if for taking you to the profile page -->
             <button class="button button-icon ion-person" ui-sref="profile"></button>
          </div>
-       <!-- end of header section -->  
+       <!-- end of header section -->
       </ion-header-bar>
 
 
@@ -49,7 +51,7 @@
             <button class="button" ui-sref="help" >Help</button>
          </div>
          <h1 class="title">© Help Me! Laurier</h1>
-         <!--This is for displaing the EULA page -->  
+         <!--This is for displaing the EULA page -->
          <div class="buttons" ng-click="show_Eula()">
             <button class="button" ui-sref="eula">EULA</button>
          </div>
@@ -58,9 +60,9 @@
 
       <ion-content>
 
-        <ion-nav-bar></ion-nav-bar>
-         <!--This sets our animation style to slide left or right when buttons are pressed -->  
-        <ion-nav-view animation="slide-left-right">
+
+         <!--This sets our animation style to slide left or right when buttons are pressed -->
+        <ion-nav-view animation="no-animation">
           <!-- Center content -->
         </ion-nav-view>
 

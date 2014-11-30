@@ -5,7 +5,7 @@
   });
 
   app.value('config', {
-      serverUrl: 'http://localhost:8080/'
+      serverUrl: 'http://192.168.1.91:8080/'
   });
 
 

@@ -9,60 +9,130 @@ app.filter('scoreFilter', function() {
     return sign + input;
 
   };
+});
+
+
+app.factory('PushProcessingService', function($http, config) {
+        function onDeviceReady() {
+            console.info('NOTIFY  Device is ready.  Registering with GCM server');
+            //register with google GCM server
+            var pushNotification = window.plugins.pushNotification;
+            pushNotification.register(gcmSuccessHandler, gcmErrorHandler, {'senderID':"545399189789",'ecb':'onNotificationGCM'});
+        }
+        function gcmSuccessHandler(result) {
+            console.info('NOTIFY  pushNotification.register succeeded.  Result = '+result)
+        }
+        function gcmErrorHandler(error) {
+            console.error('NOTIFY  '+error);
+        }
+        return {
+            initialize : function () {
+                console.info('NOTIFY  initializing');
+                document.addEventListener('deviceready', onDeviceReady, false);
+            },
+            registerID : function (id) {
+                //Insert code here to store the user's ID on your notification server.
+                //You'll probably have a web service (wrapped in an Angular service of course) set up for this.
+                //For example:
+
+                var p = {
+                  token: id
+                };
+
+              $http.post(config.serverUrl + 'notifications/register', p).
+              success(function(data, status, headers, config) {
+
+              }).
+              error(function(data, status, headers, config) {
+                alert("Failed to register token for some reason...:" + data);
+              });
+
+            },
+            //unregister can be called from a settings area.
+            unregister : function () {
+                console.info('unregister')
+                var push = window.plugins.pushNotification;
+                if (push) {
+                    push.unregister(function () {
+                        console.info('unregister success')
+                    });
+                }
+            }
+        }
+    });
+
+
+
+
+app.controller('IndexController', function($scope, $cordovaPush, $ionicPlatform, config, PushProcessingService) {
+
+
+
+
+      $scope.notificationsCount = 0;
+
 })
 
 
-app.controller('IndexController', function($scope, $cordovaPush, $ionicPlatform, config) {
+// ALL GCM notifications come through here.
+function onNotificationGCM(e) {
+    console.log('EVENT -&gt; RECEIVED:' + e.event + '');
+    switch( e.event )
+    {
+        case 'registered':
+            if ( e.regid.length > 0 )
+            {
+                console.log('REGISTERED with GCM Server -> REGID:' + e.regid + '');
+
+                //call back to web service in Angular.
+                //This works for me because in my code I have a factory called
+                //      PushProcessingService with method registerID
+                var elem = angular.element(document.querySelector('[ng-app]'));
+                var injector = elem.injector();
+                var myService = injector.get('PushProcessingService');
+                myService.registerID(e.regid);
+            }
+            break;
+
+        case 'message':
+            // if this flag is set, this notification happened while we were in the foreground.
+            // you might want to play a sound to get the user's attention, throw up a dialog, etc.
+            if (e.foreground)
+            {
+                //we're using the app when a message is received.
+                console.log('--INLINE NOTIFICATION--' + '');
+
+                // if the notification contains a soundname, play it.
+                //var my_media = new Media(&quot;/android_asset/www/&quot;+e.soundname);
+                //my_media.play();
+                alert(e.payload.message);
+            }
+            else
+            {
+                // otherwise we were launched because the user touched a notification in the notification tray.
+                if (e.coldstart)
+                    console.log('--COLDSTART NOTIFICATION--' + '');
+                else
+                    console.log('--BACKGROUND NOTIFICATION--' + '');
 
 
-    var androidConfig = {
-      "senderID":"gentle-epoch-778",
-    };
+            }
 
-      $scope.notificationsCount = 0; 
+            console.log('MESSAGE -&gt; MSG: ' + e.payload.message + '');
+            console.log('MESSAGE: '+ JSON.stringify(e.payload));
+            break;
 
-      $ionicPlatform.ready(function() {
+        case 'error':
+            console.log('ERROR -&gt; MSG:' + e.msg + '');
+            break;
 
-                if(ionic.Platform.isWebView()) {
-
-                  // This controller loads on every page and controls the frame. Register our push notifications.
-                  $cordovaPush.register(androidConfig).then(function(result) {
-                    // Success!
-                    // Hook into notifications
-                    $scope.notificationsCount = 0;
-                    localStorage['pushId'] = result; 
-                    alert(result);
-
-                    var payload = {
-                      token: result
-                    };
-
-                    $http.post(config.serverUrl + 'notifications/register', payload).
-                    success(function(data, status, headers, config) {
-                        alert("Token has been registered succesfully.");
-                    }).
-                    error(function(data, status, headers, config) {
-            
-                    });       
-
-                    
-                  }, function(err) {
-                    
-                    // Not able to register, silently don't care
-
-                  });
+        default:
+            console.log('EVENT -&gt; Unknown, an event was received and we do not know what it is');
+            break;
+    }
+}
 
 
-
-              }
-
-  });
-
-
-
-
-
-})
 
 app.controller('PostItem', function($scope, $http, $stateParams, $location, config) {
 
@@ -119,7 +189,7 @@ app.controller('PostItem', function($scope, $http, $stateParams, $location, conf
 
   })
 
-  app.controller('LoginController', function($scope, $http, $stateParams, $cordovaOauth, $location, config) {
+  app.controller('LoginController', function($scope, $http, $stateParams, $cordovaOauth, $location, config, PushProcessingService) {
 
 
 
@@ -139,8 +209,16 @@ app.controller('PostItem', function($scope, $http, $stateParams, $location, conf
 
               $http.get(config.serverUrl + 'login/' + identity).
               success(function(data, status, headers, config) {
-                  $location.path("/home");
-                  console.log(data);
+
+
+
+                if(ionic.Platform.isWebView()) {
+                    PushProcessingService.initialize();
+                }
+
+                $location.path("/home");
+
+
               }).
               error(function(data, status, headers, config) {
                   alert("Connection Failed");
@@ -193,10 +271,10 @@ app.controller('PostItem', function($scope, $http, $stateParams, $location, conf
         }
 
         $http.post(config.serverUrl + 'votes/' + submission._id, payload).success(function(data, status, headers, config) {
-            
+
             if(data.status) {
               submission.voteIds.push(localStorage['identity']);
-              submission.score = data.score; 
+              submission.score = data.score;
             }
 
         });
@@ -228,7 +306,7 @@ app.controller('PostItem', function($scope, $http, $stateParams, $location, conf
                   text: '<font size="1">Language</font>',
                   onTap: function(e) {
                       window.open('mailto:reporting@helpmelaurier.com?subject=Report Post: Language&body=Do Not Remove [: Post Title: '+$scope.names.title+'ID: '+$scope.names._id+'Category: '+$scope.names.categoryId+']');
-                  
+
                   }
               }, {
                   text: '<font size="1">Cancel</font>',
@@ -265,11 +343,11 @@ app.controller('PostItem', function($scope, $http, $stateParams, $location, conf
             }
             $scope.SetQuest = function() {
           $scope.SampCurrent.current=SampQuestions.question
-         
+
       }
             $scope.SetAns = function() {
-          $scope.SampCurrent.current=SampAns.answer   
-         
+          $scope.SampCurrent.current=SampAns.answer
+
       }
 
 

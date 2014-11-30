@@ -1,6 +1,5 @@
 <!-- Ask/Reply Selection Section  -->
 
-  
 
 <!--This places the ask question button in an ideal locaiton -->
 <div class="col col-80 col-offset-10"><button class="button button-full button-positive" ui-sref="post({value:data.category})">Ask Question</button></div>
@@ -14,12 +13,12 @@
   </div>
     <!-- This is the 5 categories that can be used by our app-->
 <div ng-init="names=['Academic','Residence','Financial','Social','Misc']" >
- 
+
   <ul>
   	<!--This creates 5 radio buttons for use in selecting which category you wish to view for both questions or answers -->
   	<!-- It defaults to academic-->
     <ion-radio  ng-repeat="x in names" ng-model="data.category" ng-value="$index">{{x}}</ion-radio>
-    
+
   </ul>
 </div>
 </div>

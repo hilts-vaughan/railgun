@@ -22,7 +22,6 @@ module.exports = function(server) {
       req.params.score = 0;
       req.params.state = 0;
 
-      console.log(req.headers.xero);
 
       if(identity) {
 
