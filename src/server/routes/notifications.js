@@ -59,7 +59,6 @@ module.exports = function(server) {
               sendList.push(notification);
           });
 
-          console.log(sendList);
           res.send(sendList);
 
         });

@@ -381,7 +381,7 @@ $ionicLoading.hide();
 
   });
 
-  app.controller('AlertController', function($scope, $http, $stateParams, config, $location) {
+  app.controller('AlertController', function($scope, $http, $stateParams, config, $location, $rootScope) {
 
         $http.get(config.serverUrl + 'notifications').success(function(data, status, headers, config){
         $scope.notifications = data;
@@ -392,6 +392,7 @@ $ionicLoading.hide();
 
                 $http.get(config.serverUrl + 'notifications/' + id).success(function(data, status, headers, config){
                   $location.path('postlist/' + redirect);
+                  $rootScope.$broadcast('notification', {count: 1}); // signal alerts as marked off
                 });
 
       };

@@ -36,7 +36,8 @@ module.exports = function(server) {
           if(question) {
 
                 newAnswer.save(function(exception, data) {
-                  server.transit.processNewSubmission(newAnswer, 'answer', newAnswer._id);
+                  console.log(data);
+                  server.transit.processNewSubmission(data, 'answer', newAnswer.parentQuestionId);
                   res.send(x);
                 });
           }
