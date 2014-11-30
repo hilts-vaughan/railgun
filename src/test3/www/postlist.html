@@ -10,7 +10,7 @@
  
   <!--Close the item dividor for the first section-->
   </div>
-<div>
+<div class="col-80">
   <!--This places the description section-->
   <span class="left item-text-wrap">
  {{names.body}} </div>
@@ -20,11 +20,11 @@
 
   <!--If the button is pushed it sets the two voteing buttonsto invisible and changes score-->
 
-   <button  ng-hide="isVotedOn(names)" class="button button-icon  ion-chevron-up" ng-click="vote(names, true)" ></button>
+   <button  ng-disable="isVotedOn(names)" class="button button-icon  ion-chevron-up" ng-click="vote(names, true)" ></button>
   
   <!--Puts the score one the screen between the two buttons-->
    <item class="item">{{names.score | scoreFilter}}</item>
- <button ng-hide="isVotedOn(names)"class="button button-icon ion-chevron-down" ng-click="vote(names, false)"></button>
+ <button ng-disabled="isVotedOn(names)"class="button button-icon ion-chevron-down" ng-click="vote(names, false)"></button>
  
 </div>
  </span>
@@ -53,21 +53,27 @@
 
   <!--This is the voting system for the answers-->
 <div>
+   <div class="col-80">
   <span class="left item-text-wrap">
- {{answer.body}} </div>
+   
+ {{answer.body}} 
+    
+</span>
+</div>
+</div>
   <!--This is the voting system for the answers-->
 
  <span class="right" >
   <div class="list" id="textCenter"> 
 
-   <button  ng-hide="isVotedOn(answer)" class="button button-icon  ion-chevron-up" ng-click="vote(answer, true)" ></button>
+   <button  ng-disabled="isVotedOn(answer)" class="button button-icon  ion-chevron-up" ng-click="vote(answer, true)" ></button>
    <item class="item">{{answer.score | scoreFilter}}</item>
- <button ng-hide="isVotedOn(answer)"class="button button-icon ion-chevron-down" ng-click="vote(answer, false)"></button>
+ <button ng-disabled="isVotedOn(answer)"class="button button-icon ion-chevron-down" ng-click="vote(answer, false)"></button>
 </div>
  </span>
 </div>
 
-  <div class="item item-divider">
+<div class="item item-divider">
   <span class="left"  id="author">Posted by: {{answer.author}}</span>
   <span class="right" id="author">{{answer.submissionDate | date: 'medium'}}</span>
   </div>
