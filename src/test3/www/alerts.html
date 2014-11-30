@@ -1,24 +1,23 @@
-
-
-  <!-- Notification Section  -->
+<!-- Notification Section  -->
 <!--Tab style bars -->
-	 <div class="button-bar" >
-<!-- Update to question mode-->
-  <a class="button button-positive" ng-class="{'button-clear button-outline': type == 'question'}" ng-click="setType('question')">Recommended</a>
-<!-- update to answer mode-->
-  <a class="button button-positive" ng-class="{'button-clear button-outline': type == 'answer'}" ng-click="setType('answer')">Answered</a>
+<div class="button-bar" >
+   <!-- Update to question mode-->
+   <a class="button button-positive" ng-class="{'button-clear button-outline': type == 'question'}" ng-click="setType('question')">Recommended</a>
+   <!-- update to answer mode-->
+   <a class="button button-positive" ng-class="{'button-clear button-outline': type == 'answer'}" ng-click="setType('answer')">Answered</a>
 </div>
-	  <div class="list">
-<!-- Make a list with a header -->
-  <div class="item item-divider" align="center">
-    Notifications
-  </div>
-<!--print the list using the current notifications to the scree -->
-  <ul>
-  <a class="item item-text-wrap" ng-hide="type != notification.type" ng-click="markNotification(notification._id, notification.submissionId)" ng-repeat="notification in notifications">{{x}}
-    {{notification.title}}
-    <div id="author">{{notification.body}}</div>
-  </a>
-</ul>
+<div class="list">
+   <!-- Make a list with a header -->
+   <div class="item item-divider" align="center">
+      Notifications
+   </div>
+   <!--print the list using the current notifications to the scree -->
+   <ul>
+      <a class="item item-text-wrap" ng-hide="type != notification.type" ng-click="markNotification(notification._id, notification.submissionId)" ng-repeat="notification in notifications">
+         {{x}}
+         {{notification.title}}
+         <div id="author">{{notification.body}}</div>
+      </a>
+   </ul>
 </div>
 <button ng-click="clear()" class="button button-full button-positive">Clear All</button>

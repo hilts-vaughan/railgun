@@ -1,24 +1,20 @@
 <!-- Ask/Reply Selection Section  -->
-
-
 <!--This places the ask question button in an ideal locaiton -->
 <div class="col col-80 col-offset-10"><button class="button button-full button-positive" ui-sref="post({id:data.category})">Ask Question</button></div>
 <!-- this places the View question button below the ask question button with a bit of white space inbetween-->
 <div class="col col-80 col-offset-10"><button class="button button-full button-positive"ui-sref="topiclist({id:data.category})">  View Question</button></div>
 <!--This creates a list to contain a list of radio buttons and a header -->
 <div class="list">
-<!-- this is the header of the list-->
-<div class="item item-divider">
-    Select A Category
-  </div>
-    <!-- This is the 5 categories that can be used by our app-->
-<div ng-init="names=['Academic','Residence','Financial','Social','Misc']" >
-
-  <ul>
-  	<!--This creates 5 radio buttons for use in selecting which category you wish to view for both questions or answers -->
-  	<!-- It defaults to academic-->
-    <ion-radio  ng-repeat="x in names" ng-model="data.category" ng-value="$index">{{x}}</ion-radio>
-
-  </ul>
-</div>
+   <!-- this is the header of the list-->
+   <div class="item item-divider">
+      Select A Category
+   </div>
+   <!-- This is the 5 categories that can be used by our app-->
+   <div ng-init="names=['Academic','Residence','Financial','Social','Misc']" >
+      <ul>
+         <!--This creates 5 radio buttons for use in selecting which category you wish to view for both questions or answers -->
+         <!-- It defaults to academic-->
+         <ion-radio  ng-repeat="x in names" ng-model="data.category" ng-value="$index">{{x}}</ion-radio>
+      </ul>
+   </div>
 </div>

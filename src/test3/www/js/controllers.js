@@ -1,17 +1,3 @@
-app.filter('scoreFilter', function() {
-    return function(input) {
-
-        var sign = ''
-        if (input > 0) {
-            sign = '+';
-        }
-
-        return sign + input;
-
-    };
-});
-
-
 app.factory('PushProcessingService', function($http, config) {
     function onDeviceReady() {
         console.info('NOTIFY  Device is ready.  Registering with GCM server');
