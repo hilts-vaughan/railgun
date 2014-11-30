@@ -1,3 +1,5 @@
+
+
 	<!-- Question Card Section  -->
    <div class="card">
   <div class="item item-divider">
@@ -7,7 +9,7 @@
 
 
   <!--This segment handles the buttons -->
- 
+
   <!--Close the item dividor for the first section-->
   </div>
 <div class="col-80 " >
@@ -15,17 +17,17 @@
   <span class="left item-text-wrap">
  <br>{{names.body}} </div>
 <span class="right" >
-<div class="list" id="textCenter"> 
+<div class="list" id="textCenter">
 
 
   <!--If the button is pushed it sets the two voteing buttonsto invisible and changes score-->
 
    <button  ng-disabled="isVotedOn(names)" class="button button-icon  ion-chevron-up" ng-click="vote(names, true)" ></button>
-  
+
   <!--Puts the score one the screen between the two buttons-->
    <item class="item">{{names.score | scoreFilter}}</item>
  <button ng-disabled="isVotedOn(names)"class="button button-icon ion-chevron-down" ng-click="vote(names, false)"></button>
- 
+
 </div>
  </span>
 </div>
@@ -47,7 +49,7 @@
   <!-- This puts the answer in the left side of the tobbox-->
    <span class="left">{{answer.title}}</span>
 
- 
+
 
 
 
@@ -55,8 +57,8 @@
 <div>
    <div class="col-80">
   <span class="left item-text-wrap">
- <h3>  
- {{answer.body}} 
+ <h3>
+ {{answer.body}}
   </h3>
 </span>
 </div>
@@ -64,7 +66,7 @@
   <!--This is the voting system for the answers-->
 
  <span class="right" >
-  <div class="list" id="textCenter"> 
+  <div class="list" id="textCenter">
 
    <button  ng-disabled="isVotedOn(answer)" class="button button-icon  ion-chevron-up" ng-click="vote(answer, true)" ></button>
    <item class="item">{{answer.score | scoreFilter}}</item>
@@ -83,4 +85,5 @@
 
 <!-- Reply Button Section  -->
 	<div class="col col-80 col-offset-10"><button class="button button-full button-positive" ui-sref="reply({id:names._id, title:names.title})">Reply</button></div>
+
 
