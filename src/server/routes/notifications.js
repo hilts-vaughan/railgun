@@ -12,6 +12,9 @@
 
 var Notification = require('./../models/notification');
 var User = require('./../models/user');
+var _ = require('underscore');
+
+
 
 module.exports = function(server) {
 
@@ -37,6 +40,48 @@ module.exports = function(server) {
             res.send({status: true});
          });
 
+
+  });
+
+
+  server.get('/notifications', function (req, res, next) {
+
+    var identity = req.headers['auth'];
+    User.findOne({name: identity}, function(exception, user) {
+
+      if(user) {
+        // We have our user, try and find every notification tied to them
+        Notification.find({ownerId: user._id}, function(exception, notifications) {
+
+          var sendList = [];
+          notifications.forEach(function(notification) {
+            if(notification.read != 1)
+              sendList.push(notification);
+          });
+
+          console.log(sendList);
+          res.send(sendList);
+
+        });
+      } else {
+        res.send([]);
+      }
+
+
+    });
+
+  });
+
+
+  server.get('/notifications/:id', function (req, res, next) {
+
+    var id = req.params.id;
+    console.log(id);
+    Notification.findById(id, function(exception, notification) {
+      notification.read = 1;
+      notification.save();
+      res.send("OK");
+    });
 
   });
 

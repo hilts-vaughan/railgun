@@ -5,9 +5,11 @@
 
 var gcm = require('node-gcm');
 
-module.exports = function() {
-	
+module.exports = {
+
   sendNotification: function sendNotification(notification, address) {
+
+      console.log(address);
 
       var sender = new gcm.Sender('AIzaSyDxPx07sSVNPThuCwI69fLlc3MiOXikpkY');
 

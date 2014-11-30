@@ -8,7 +8,9 @@ var notificationSchema = new Schema({
     date : Date,
     ownerId : Number,
     type : String,
-    
+    read : Number,
+    submissionId : Number
+
 });
 
 // Duplicate the ID field.

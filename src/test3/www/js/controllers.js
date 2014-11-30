@@ -64,12 +64,43 @@ app.factory('PushProcessingService', function($http, config) {
 
 
 
-app.controller('IndexController', function($scope, $cordovaPush, $ionicPlatform, config, PushProcessingService) {
+app.controller('IndexController', function($scope, $cordovaPush, $ionicPlatform, config, PushProcessingService, $http, $interval) {
 
 
 
 
-      $scope.notificationsCount = 0;
+  $scope.$on('notification', function(event, args) {
+
+      var count = args.count;
+
+      // Make a call to fetch for them now
+      $scope.fetchNotify();
+
+
+    });
+
+    $scope.fetchNotify = function() {
+
+      // Fetch the latest notifications at this point in time
+      // we've been alerted there's some to be had
+
+      $http.get(config.serverUrl + 'notifications').success(function(data, status, headers, config){
+        $scope.notifyCount = data.length;
+      });
+
+
+
+
+    };
+
+    $scope.notifyCount = 0;
+    $scope.fetchNotify();
+
+    // Poll every 5s for new notifications
+    $interval(function(){
+      $scope.fetchNotify();
+    },5000);
+
 
 })
 
@@ -84,17 +115,17 @@ function onNotificationGCM(e) {
             {
                 console.log('REGISTERED with GCM Server -> REGID:' + e.regid + '');
 
-                //call back to web service in Angular.
-                //This works for me because in my code I have a factory called
-                //      PushProcessingService with method registerID
-                var elem = angular.element(document.querySelector('[ng-app]'));
-                var injector = elem.injector();
-                var myService = injector.get('PushProcessingService');
-                myService.registerID(e.regid);
             }
             break;
 
         case 'message':
+
+            var $body = angular.element(document.body);   // 1
+            var $rootScope = $body.scope().$root;         // 2
+            $rootScope.$apply(function () {               // 3
+                $rootScope.$broadcast('notification', {count: 1});
+            });
+
             // if this flag is set, this notification happened while we were in the foreground.
             // you might want to play a sound to get the user's attention, throw up a dialog, etc.
             if (e.foreground)
@@ -105,7 +136,6 @@ function onNotificationGCM(e) {
                 // if the notification contains a soundname, play it.
                 //var my_media = new Media(&quot;/android_asset/www/&quot;+e.soundname);
                 //my_media.play();
-                alert(e.payload.message);
             }
             else
             {
@@ -238,23 +268,23 @@ app.controller('PostItem', function($scope, $http, $stateParams, $location, conf
       var category = $stateParams.id;
       $scope.params = $stateParams;
 
-	  
-	  
-	  
-	  
+
+
+
+
     $ionicLoading.show({
       template: 'Loading...'
     });
-  
 
-	  
-	  
-	  
-	  
+
+
+
+
+
       $http.get(config.serverUrl + 'submissions/questions?categoryId=' + category).
-	  
+
       success(function(data, status, headers, config) {
-	 
+
           $scope.names = data;
           console.log(data);
       }).
@@ -269,11 +299,11 @@ $ionicLoading.hide();
       var questionId = $stateParams.id;
       $scope.params = $stateParams;
 
-	  
+
 	  $ionicLoading.show({
       template: 'Loading...'
     });
-	  
+
       $http.get(config.serverUrl + 'submissions/questions/' + questionId).
       success(function(data, status, headers, config) {
           console.log(data);
@@ -351,24 +381,20 @@ $ionicLoading.hide();
 
   });
 
-  app.controller('AlertController', function($scope, $http, $stateParams, config) {
-           var SampAns = {
-              answer: ['answer1','answer2','answer3']
-            }
-           var SampQuestions ={
-              question: ['question1','question2','question3']
-            }
-            $scope.SampCurrent ={
-              current: SampQuestions.question
-            }
-            $scope.SetQuest = function() {
-          $scope.SampCurrent.current=SampQuestions.question
+  app.controller('AlertController', function($scope, $http, $stateParams, config, $location) {
 
-      }
-            $scope.SetAns = function() {
-          $scope.SampCurrent.current=SampAns.answer
+        $http.get(config.serverUrl + 'notifications').success(function(data, status, headers, config){
+        $scope.notifications = data;
+      });
 
-      }
+
+      $scope.markNotification = function(id, redirect) {
+
+                $http.get(config.serverUrl + 'notifications/' + id).success(function(data, status, headers, config){
+                  $location.path('postlist/' + redirect);
+                });
+
+      };
 
 
   })

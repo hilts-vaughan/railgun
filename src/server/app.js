@@ -83,7 +83,7 @@ require("fs").readdirSync(normalizedPath).forEach(function(file) {
 });
 
 var QuestionTransitController = require('./system/questionTransitController');
-server.transit = new QuestionTransitController(); 
+server.transit =  QuestionTransitController;
 
 // Finally, begin listening.
 server.listen(8080, function() {

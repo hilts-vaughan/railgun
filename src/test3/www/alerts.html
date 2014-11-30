@@ -1,6 +1,6 @@
 
 
-  <!-- Notification Section  -->	  
+  <!-- Notification Section  -->
 <!--Tab style bars -->
 	 <div class="button-bar" >
 <!-- Update to question mode-->
@@ -15,7 +15,9 @@
   </div>
 <!--print the list using the current notifications to the scree -->
   <ul>
-  <a class="item" href="#" ng-repeat="x in SampCurrent.current">{{x}}
+  <a class="item" ng-click="markNotification(notification._id, notification.submissionId)" ng-repeat="notification in notifications">{{x}}
+    {{notification.title}}
+    <div id="author">{{notification.body}}</div>
   </a>
 </ul>
 </div>

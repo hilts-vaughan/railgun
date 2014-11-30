@@ -34,7 +34,9 @@ module.exports = function(server) {
 
 
           if(question) {
+
                 newAnswer.save(function(exception, data) {
+                  server.transit.processNewSubmission(newAnswer, 'answer', newAnswer._id);
                   res.send(x);
                 });
           }

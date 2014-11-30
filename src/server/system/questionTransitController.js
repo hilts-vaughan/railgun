@@ -8,17 +8,20 @@ var User = require('./../models/user');
 var mongoose = require('mongoose');
 var Notification = mongoose.model('Notification');
 
-module.exports = function() {
+module.exports = {
 
-	var controller = new NotificationController();
 
 	/*
 		Takes a new question has been sent from another source and requests a processing.
 		@param	question 	The new question that needs to be processed
 	 */
-	processNewSubmission: function processNewSubmission(question, type) {
+	processNewSubmission: function processNewSubmission(question, type, id) {
 
 		User.find({}, function(exception, users) {
+
+			var controller = NotificationController;
+
+			console.log("Searching users...");
 
 			var sendList = [];
 			var notifyList = [];
@@ -31,14 +34,19 @@ module.exports = function() {
 
 				// Generate a notification
 				var userNotification = new Notification();
-				userNotification.title = "Someone posted something!"
-				userNotification.body = "Check it out.";
+				userNotification.title = question.title
+				userNotification.body = question.body;
 				userNotification.date = new Date();
 				userNotification.ownerId = user._id;
 				userNotification.type = type;
+				userNotification.read = 0;
+
+				userNotification.submissionId = id;
 
 				userNotification.save();
 
+				console.log("Token " + token + " is getting a notification.");
+				console.log(controller);
 				controller.sendNotification(userNotification, token);
 
 
@@ -48,10 +56,7 @@ module.exports = function() {
 
 		});
 
-	};
+	}
 
 
-
-	
-	
-}
+};
