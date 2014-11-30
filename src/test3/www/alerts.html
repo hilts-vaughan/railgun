@@ -4,18 +4,18 @@
 <!--Tab style bars -->
 	 <div class="button-bar" >
 <!-- Update to question mode-->
-  <a class="button button-positive" ng-click="SetQuest()">Recomended</a>
+  <a class="button button-positive" ng-class="{'button-clear button-outline': type == 'question'}" ng-click="setType('question')">Recommended</a>
 <!-- update to answer mode-->
-  <a class="button button-positive"ng-click="SetAns()">Answered</a>
+  <a class="button button-positive" ng-class="{'button-clear button-outline': type == 'answer'}" ng-click="setType('answer')">Answered</a>
 </div>
 	  <div class="list">
 <!-- Make a list with a header -->
   <div class="item item-divider" align="center">
-    Recomended/Answered Questions
+    Notifications
   </div>
 <!--print the list using the current notifications to the scree -->
   <ul>
-  <a class="item item-text-wrap" ng-click="markNotification(notification._id, notification.submissionId)" ng-repeat="notification in notifications">{{x}}
+  <a class="item item-text-wrap" ng-hide="type != notification.type" ng-click="markNotification(notification._id, notification.submissionId)" ng-repeat="notification in notifications">{{x}}
     {{notification.title}}
     <div id="author">{{notification.body}}</div>
   </a>

@@ -397,6 +397,11 @@ $ionicLoading.hide();
 
       };
 
+      $scope.setType = function(type) {
+        $scope.type = type;
+      }
+
+      $scope.type = 'question';
 
   })
 
