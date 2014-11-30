@@ -1,23 +1,6 @@
-
  <form name="myForm">
-
-<div style="text-align:center; margin-top:15%;">
-    <img src="img/logo.png">
-
-   </div>
-
-
-</img>
-<p style="text-align:center; font-size:200%; margin-top:10%;">
-    Help Me! Laurier
-  </p>
-
-  <input type="text" placeholder="Enter an identity here..." ng-model="identity" style="width: 80%; border: 1px solid black; text-align: center; margin: 0 auto; margin-top: 20px;"
-  required ng-minlength="1"
-  >
-
-  <div class="col col-80 col-offset-10" style="margin-top:25%;"><button class="button button-full button-positive" ng-disabled="myForm.$invalid" ng-click="login()" > Login with this identity!</button></div>
-
+	<div id="loginLogo"><img src="img/logo.png"></div>
+	</img><p id="loginHeader>Help Me! Laurier</p>
+	<input type="text" id="loginInput" placeholder="Enter an identity here..." ng-model="identity" required ng-minlength="1">
+	<div class="col col-80 col-offset-10" id="loginButton"><button class="button button-full button-positive" ng-disabled="myForm.$invalid" ng-click="login()" > Login with this identity!</button></div>
 </form>
-
-

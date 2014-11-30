@@ -1,6 +1,31 @@
 .right{
     float:right;
 }
+
 .left{
     float:left;
+}
+
+#author{
+color: gray; font-size: 12px;
+}
+
+#textCenter{
+text-align:center
+}
+
+#loginLogo{
+text-align:center; margin-top:15%;
+}
+
+#loginHeader{
+text-align:center; font-size:200%; margin-top:10%;
+}
+
+#loginInput{
+width: 80%; border: 1px solid black; text-align: center; margin: 0 auto; margin-top: 20px;
+}
+
+#loginButton{
+margin-top:25%;
 }
