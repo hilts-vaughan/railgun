@@ -233,27 +233,47 @@ app.controller('PostItem', function($scope, $http, $stateParams, $location, conf
   })
 
 
-  app.controller('TopicList', function($scope, $http, $stateParams, config) {
+  app.controller('TopicList', function($scope, $http, $stateParams, $ionicLoading, config) {
 
       var category = $stateParams.id;
       $scope.params = $stateParams;
 
+	  
+	  
+	  
+	  
+    $ionicLoading.show({
+      template: 'Loading...'
+    });
+  
+
+	  
+	  
+	  
+	  
       $http.get(config.serverUrl + 'submissions/questions?categoryId=' + category).
+	  
       success(function(data, status, headers, config) {
+	 
           $scope.names = data;
           console.log(data);
       }).
       error(function(data, status, headers, config) {
           alert("Connection Failed");
       });
-
+$ionicLoading.hide();
   })
 
-  app.controller('PostList', function($scope, $http, $stateParams, $ionicPopup, config) {
+  app.controller('PostList', function($scope, $http, $stateParams, $ionicPopup, $ionicLoading, config) {
 
       var questionId = $stateParams.id;
       $scope.params = $stateParams;
 
+	  
+	  $ionicLoading.show({
+      template: 'Loading...'
+    });
+	  
       $http.get(config.serverUrl + 'submissions/questions/' + questionId).
       success(function(data, status, headers, config) {
           console.log(data);
@@ -262,7 +282,7 @@ app.controller('PostItem', function($scope, $http, $stateParams, $location, conf
       error(function(data, status, headers, config) {
           alert("Connection Failed");
       });
-
+$ionicLoading.hide();
 
       $scope.vote = function(submission, wasUpVote) {
 
