@@ -348,16 +348,9 @@ $ionicLoading.hide();
               subTitle: 'Please select a report reason.',
               scope: $scope,
               buttons: [{
-                  text: '<font size="1">Spam</font>',
-                  onTap: function(e) {
-					  window.open('mailto:reporting@helpmelaurier.com?subject=Report Post: Spam&body=Do Not Remove [: Post Title: '+$scope.names.title+'ID: '+$scope.names._id+'Category: '+$scope.names.categoryId+']');
-                  }
+                  text: '<font size="1">Spam</font>'
               }, {
-                  text: '<font size="1">Language</font>',
-                  onTap: function(e) {
-                      window.open('mailto:reporting@helpmelaurier.com?subject=Report Post: Language&body=Do Not Remove [: Post Title: '+$scope.names.title+'ID: '+$scope.names._id+'Category: '+$scope.names.categoryId+']');
-
-                  }
+                  text: '<font size="1">Language</font>'
               }, {
                   text: '<font size="1">Cancel</font>',
                   onTap: function(e) {}
