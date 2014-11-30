@@ -25,6 +25,11 @@
           url: '/eula',
           templateUrl: 'eula.html'
       })
+	  
+      .state('about', {
+          url: '/about',
+          templateUrl: 'about.html'
+      })
 
       .state('alerts', {
           url: '/alerts',
