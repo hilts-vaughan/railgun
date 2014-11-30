@@ -1,29 +1,41 @@
+/* Style text for right aligned items */
 .right{
     float:right;
 	max-width:100%;
 }
 
+/* Style text for left aligned items */
 .left{
     float:left;
 	max-width:100%;
 }
 
+/* Keeps titles in the center */
+.title {
+  text-align: center
+}
+
+/* Style text for author field */
 #author{
 color: gray; font-size: 12px;
 }
 
+/* Style text for centered items */
 #textCenter{
 text-align:center
 }
 
+/*Keeps the Login logo centered */
 #loginLogo{
 text-align:center; margin-top:15%;
 }
 
+/*Keeps the login header in the correct place*/
 #loginHeader{
 text-align:center; font-size:200%; margin-top:10%;
 }
 
+/* Aligns the input box */
 #loginInput {
 width: 80%;
 border: 1px solid black;
@@ -32,10 +44,7 @@ margin: 0 auto;
 margin-top: 20px;
 }
 
+/* Aligns the Login button */
 #loginButton{
 margin-top:25%;
-}
-
-.title {
-  text-align: center
 }
