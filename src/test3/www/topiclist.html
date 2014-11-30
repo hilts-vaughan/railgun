@@ -1,13 +1,21 @@
+<!--Card Item containing Info -->
 <div >
+<!--No Items Card -->
 <div class="list card" >
+<!--Icon Link -->
    <a href="#" class="item item-icon-left" ui-sref="home" ng-hide="names">
    <i class="icon ion-chatbubbles"></i>
    No Posts (Click to Return)
    </a>
+   
+<!--Post card -->
    <a href="#" class="item item-icon-left" ng-repeat="x in names" ui-sref="postlist({id: x.id}) "ng-hide="!names">
-      <i class="icon ion-chatbubbles"></i>
+      <!--Icon Link -->
+	  <i class="icon ion-chatbubbles"></i>
+<!--Dynamic Title Gen -->
       <div class="left item-text-wrap">{{ x.title }}</div>
       <br>
+<!--Dynamic Author Gen -->
       <span class="left" id="author">Posted by: {{x.author}}</span>
    </a>
 </div>
