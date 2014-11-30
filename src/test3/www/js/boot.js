@@ -74,7 +74,8 @@
 
       .state('profile', {
           url: '/profile',
-          templateUrl: 'profile.html'
+          templateUrl: 'profile.html',
+          controller: "ProfileController"
       });
 
   });

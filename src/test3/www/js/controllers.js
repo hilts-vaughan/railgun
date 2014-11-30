@@ -381,6 +381,22 @@ $ionicLoading.hide();
 
   });
 
+  app.controller('ProfileController', function ProfileController($scope, $http, $location) {
+
+    $scope.fetchIdentity = function() {
+      return localStorage['identity'];
+    }
+
+    $scope.logout = function() {
+
+      // destroy your existance
+      localStorage.removeItem('identity');
+      $location.path('/login');
+      location.reload();
+    }
+
+  });
+
   app.controller('AlertController', function($scope, $http, $stateParams, config, $location, $rootScope) {
 
         $http.get(config.serverUrl + 'notifications').success(function(data, status, headers, config){
@@ -392,7 +408,7 @@ $ionicLoading.hide();
 
                 $http.get(config.serverUrl + 'notifications/' + id).success(function(data, status, headers, config){
                   $location.path('postlist/' + redirect);
-                  $rootScope.$broadcast('notification', {count: 1}); // signal alerts as marked off
+                  $rootScope.$broadcast('notification', {count: 1});
                 });
 
       };
