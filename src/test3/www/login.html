@@ -1,9 +1,14 @@
+<!--This is the login form page -->
 <form name="myForm">
+	<!--This gives the style of our login pages logo -->
    <div id="loginLogo">
+   		<!--This places the image that is our logo -->
       <img src="img/logo.png"></img>
    </div>
-
+	<!--This header text Is simply the name of our app -->
    <p id="loginHeader">Help Me! Laurier </p>
+   <!--This asks the user to enter there information -->
    <input type="text" id="loginInput" placeholder="Enter an identity here..." ng-model="identity" required ng-minlength="1">
+   <!--This places the login button formatted on the screen and keeps it disabled unless the user enters a user name -->
    <div class="col col-80 col-offset-10" id="loginButton"><button class="button button-full button-positive" ng-disabled="myForm.$invalid" ng-click="login()" > Login with this identity!</button></div>
 </form>

@@ -13,10 +13,11 @@
    </div>
    <span class="right" >
       <div class="list" id="textCenter">
-         <!--If the button is pushed it sets the two voteing buttonsto invisible and changes score-->
+         <!--Changes voteing button to disabled and changes score up if pressed before disabled-->
          <button  ng-disabled="isVotedOn(names)" class="button button-icon  ion-chevron-up" ng-click="vote(names, true)" ></button>
          <!--Puts the score one the screen between the two buttons-->
          <item class="item">{{names.score | scoreFilter}}</item>
+         <!--Changes voting to disabled and lowers scored if pressed before disabled-->
          <button ng-disabled="isVotedOn(names)"class="button button-icon ion-chevron-down" ng-click="vote(names, false)"></button>
       </div>
    </span>
@@ -35,6 +36,7 @@
       <span class="left">{{answer.title}}</span>
       <!--This is the voting system for the answers-->
       <div>
+         <!--This formatting allow the score to be posted next to it and wraps nicely -->
          <div class="col-80">
             <span class="left item-text-wrap">
                <h3>
@@ -46,13 +48,18 @@
       <!--This is the voting system for the answers-->
       <span class="right" >
          <div class="list" id="textCenter">
+            <!--If a user has already voted on an answer or question this disables the option to upvote -->
             <button  ng-disabled="isVotedOn(answer)" class="button button-icon  ion-chevron-up" ng-click="vote(answer, true)" ></button>
+            <!--This places the  answers score on the screen-->
             <item class="item">{{answer.score | scoreFilter}}</item>
+            <!--If a user has voted  -->
             <button ng-disabled="isVotedOn(answer)"class="button button-icon ion-chevron-down" ng-click="vote(answer, false)"></button>
          </div>
       </span>
    </div>
+   <!--This part is a footer for an answer submission and it is -->
    <div class="item item-divider">
+      <!-- -->
       <span class="left"  id="author">Posted by: {{answer.author}} on {{answer.submissionDate | date: 'medium'}}</span>
    </div>
 </div>

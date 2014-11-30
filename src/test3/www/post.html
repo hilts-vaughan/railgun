@@ -1,11 +1,19 @@
+<!--This is the section of the code used for posting questions -->
+<!--This is made a form to explicitly lock down the submit button until it is done correctly -->
 <form name="myForm">
    <div class="list list-inset">
+   	<!--This part of the code gets the text for the title of a question -->
       <label class="item item-input" >
+      <!--This puts the word title in the top and will not allow any question with a title less than 3 character or greater than 100 characters in length-->
       <input type="text" placeholder="Title" ng-model="Title" required ng-minlength="3"required ng-maxlength="100">
       </label>
+      <!--This is for getting the input in the form of a descriptoin -->
       <label class="item item-input" >
+      <!--This makes it so the question description must be atleast 3 characters -->
       <textarea placeholder="Description (Min 3 chars)" rows="8" cols="10" ng-model="Body" required ng-minlength="3"> </textarea>
       </label>
    </div>
+   <!--This is a formatted location for the button to submit your post -->
+   <!--It will not be active if any part of the page is incorrectly filled out -->
    <div class="col col-80 col-offset-10"><button class="button button-full button-positive" ng-disabled="myForm.$invalid" ng-click="SubmitPost(Title,Body)">Submit</button></div>
 </form>

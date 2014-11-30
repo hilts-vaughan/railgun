@@ -11,13 +11,17 @@
    <div class="item item-divider" align="center">
       Notifications
    </div>
-   <!--print the list using the current notifications to the scree -->
+   <!--print the list using the current notifications to the screen -->
    <ul>
       <a class="item item-text-wrap" ng-hide="type != notification.type" ng-click="markNotification(notification._id, notification.submissionId)" ng-repeat="notification in notifications">
+         <!--x is the current value -->
          {{x}}
+         <!--This places the title of notification in the screen -->
          {{notification.title}}
+         <!--This does a different type of formating for the body ofthenotification -->
          <div id="author">{{notification.body}}</div>
       </a>
    </ul>
 </div>
+<!--This button clears out all of the notifications a given user has -->
 <button ng-click="clear()" class="button button-full button-positive">Clear All</button>
