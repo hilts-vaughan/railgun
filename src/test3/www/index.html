@@ -27,7 +27,7 @@
 
 
       <!-- Header Section  -->
-      <ion-header-bar align-title="left" class="bar-positive">
+      <ion-header-bar align-title="left" class="bar-positive" ng-hide="currentPage.indexOf('login') > -1 ">
       <!--Although it says it goes to the index page this button actually takes you to the home page... -->
          <div class="buttons">
             <button class="button button-icon ion-home" ui-sref="home"></button>
@@ -46,7 +46,7 @@
 
 
       <!-- Footer Section  -->
-      <ion-footer-bar align-title="left" class="bar-positive">
+      <ion-footer-bar align-title="left" class="bar-positive" ng-hide="currentPage.indexOf('login') > -1 " >
       <!--This is the help button found in the footer -->
          <div class="buttons">
             <button class="button" ui-sref="help" >Help</button>

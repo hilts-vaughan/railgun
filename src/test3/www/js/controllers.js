@@ -61,6 +61,9 @@ app.controller('IndexController', function($scope, config, PushProcessingService
   $scope.$on('$stateChangeSuccess',
     function(event){
       $ionicScrollDelegate.scrollTop();
+
+      $scope.currentPage = window.location.href;
+
   });
 
   $scope.$on('notification', function(event, args) {
