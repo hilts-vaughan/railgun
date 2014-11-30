@@ -42,10 +42,12 @@ var autoIncrement = require('mongoose-auto-increment');
 var path = require('path')
 
 
+
 restify.CORS.ALLOW_HEADERS.push('auth');
 
 
 var server = restify.createServer();
+
 
 
 // Setup some basic plugins and parsers for the restify server
@@ -73,12 +75,15 @@ server.use(function(req, res, next){
 
 
 
+
 // Setup all the routes
 var normalizedPath = path.join(__dirname, "routes");
 require("fs").readdirSync(normalizedPath).forEach(function(file) {
   require("./routes/" + file)(server);
 });
 
+var QuestionTransitController = require('./system/questionTransitController');
+server.transit = new QuestionTransitController(); 
 
 // Finally, begin listening.
 server.listen(8080, function() {

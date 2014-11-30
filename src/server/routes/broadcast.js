@@ -24,7 +24,7 @@ module.exports = function(server) {
       // create a message with default values
       var message = new gcm.Message();
       message.addData('title','Help Me! Laurier');
-      message.addData('message', "There's a new notification for you to view.");
+      message.addData('message', msg);
 
 
       var registrationIds = ['APA91bFnHzsbGFv2g0Fn0Eq0B4TkWx5ITzxhjgM4N6Y8RHAputP5Ymq5z4sl1zl4HkUwoGbyL6sIv7IqOHCOV4vL3CjnAhuS7ixocehm4ixFPU4DnW1J7Xc9i92WW6o21GlzYGyEkZ-uTgxbktqABuFk-2UBa_po0zvL9A5R6a9ifZT0ebg4wOs'];

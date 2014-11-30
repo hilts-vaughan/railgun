@@ -84,6 +84,10 @@ module.exports = function(server) {
       newQuestion.save(function(exception, data) {
         x.id = data._id;
         res.send(x);
+
+        // Submit to transit
+        server.transit.processNewSubmission(x, 'question');
+
       });
 
 

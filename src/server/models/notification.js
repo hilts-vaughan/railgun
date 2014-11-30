@@ -5,6 +5,10 @@ var Schema = mongoose.Schema;
 var notificationSchema = new Schema({
     body   : String,
     title: String,
+    date : Date,
+    ownerId : Number,
+    type : String,
+    
 });
 
 // Duplicate the ID field.
