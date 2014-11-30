@@ -10,17 +10,17 @@
  
   <!--Close the item dividor for the first section-->
   </div>
-<div class="col-80">
+<div class="col-80 " >
   <!--This places the description section-->
   <span class="left item-text-wrap">
- {{names.body}} </div>
+ <br>{{names.body}} </div>
 <span class="right" >
 <div class="list" id="textCenter"> 
 
 
   <!--If the button is pushed it sets the two voteing buttonsto invisible and changes score-->
 
-   <button  ng-disable="isVotedOn(names)" class="button button-icon  ion-chevron-up" ng-click="vote(names, true)" ></button>
+   <button  ng-disabled="isVotedOn(names)" class="button button-icon  ion-chevron-up" ng-click="vote(names, true)" ></button>
   
   <!--Puts the score one the screen between the two buttons-->
    <item class="item">{{names.score | scoreFilter}}</item>
@@ -55,9 +55,9 @@
 <div>
    <div class="col-80">
   <span class="left item-text-wrap">
-   
+ <h3>  
  {{answer.body}} 
-    
+  </h3>
 </span>
 </div>
 </div>
