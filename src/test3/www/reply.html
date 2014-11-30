@@ -1,11 +1,17 @@
+<!--This section is for replying to questions -->
 <form name="myForm">
+	<!--This is a list of  -->
    <div class="list list-inset">
+   	<!--This is for getting the information for a reply to a question-->
       <label class="item item-input" >
-      <input type="text" placeholder="Title  (Min 3 chars)" ng-model="Title" ng-readonly="true">
+      <!--This places the title as a place holder -->
+      <input type="text" placeholder="Title" ng-model="Title" ng-readonly="true">
       </label>
       <label class="item item-input" >
-      <textarea placeholder="Description (Min 3 chars)" rows="8" cols="10" ng-model="Body" required ng-minlength="3"> </textarea>
+      <!--This gets the answer to a question. It does not allow any answers under 3 characters -->
+      <textarea placeholder="Description (Min 2 chars)" rows="8" cols="10" ng-model="Body" required ng-minlength="2"> </textarea>
       </label>
    </div>
+   <!--This places the submit button in properly formatted and disabled unless the answer is atleast 2 characters long -->
    <div class="col col-80 col-offset-10"><button class="button button-full button-positive" ng-disabled="myForm.$invalid" ng-click="SubmitReply(Body)">Submit</button></div>
 </form>
