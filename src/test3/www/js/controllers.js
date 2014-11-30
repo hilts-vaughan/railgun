@@ -417,6 +417,26 @@ $ionicLoading.hide();
         $scope.type = type;
       }
 
+      $scope.clear = function() {
+
+          var count  = $scope.notifications.length;
+          var total = 0;
+
+          $scope.notifications.forEach(function(notification) {
+                $http.get(config.serverUrl + 'notifications/' + notification._id).success(function(data, status, headers, config){
+                  total++;
+
+                  if(total == count)
+                    location.reload();
+
+
+              });
+
+          });
+
+      }
+
+
       $scope.type = 'question';
 
   })
