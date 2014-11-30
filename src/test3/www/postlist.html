@@ -40,6 +40,7 @@
          <div class="col-80">
             <span class="left item-text-wrap">
                <h3>
+                  <!--This is the body of the current answer -->
                   {{answer.body}}
                </h3>
             </span>
@@ -52,14 +53,14 @@
             <button  ng-disabled="isVotedOn(answer)" class="button button-icon  ion-chevron-up" ng-click="vote(answer, true)" ></button>
             <!--This places the  answers score on the screen-->
             <item class="item">{{answer.score | scoreFilter}}</item>
-            <!--If a user has voted  -->
+            <!--If a user has voted disabes voting otherwise lowers socre -->
             <button ng-disabled="isVotedOn(answer)"class="button button-icon ion-chevron-down" ng-click="vote(answer, false)"></button>
          </div>
       </span>
    </div>
    <!--This part is a footer for an answer submission and it is -->
    <div class="item item-divider">
-      <!-- -->
+      <!-- This formats the footer on the answer -->
       <span class="left"  id="author">Posted by: {{answer.author}} on {{answer.submissionDate | date: 'medium'}}</span>
    </div>
 </div>
