@@ -1,9 +1,11 @@
 .right{
     float:right;
+	max-width:100%;
 }
 
 .left{
     float:left;
+	max-width:100%;
 }
 
 #author{
