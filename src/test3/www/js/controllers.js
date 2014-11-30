@@ -35,17 +35,7 @@ app.factory('PushProcessingService', function($http, config) {
                 //You'll probably have a web service (wrapped in an Angular service of course) set up for this.
                 //For example:
 
-                var p = {
-                  token: id
-                };
 
-              $http.post(config.serverUrl + 'notifications/register', p).
-              success(function(data, status, headers, config) {
-
-              }).
-              error(function(data, status, headers, config) {
-                alert("Failed to register token for some reason...:" + data);
-              });
 
             },
             //unregister can be called from a settings area.
@@ -118,6 +108,21 @@ function onNotificationGCM(e) {
             if ( e.regid.length > 0 )
             {
                 console.log('REGISTERED with GCM Server -> REGID:' + e.regid + '');
+
+                var p = {
+                  token: e.regid
+                };
+
+              var $http = angular.element(document.body).injector().get('$http');
+
+              $http.post('http://104.236.62.77:8080/' + 'notifications/register', p).
+              success(function(data, status, headers, config) {
+
+              }).
+              error(function(data, status, headers, config) {
+                alert("Failed to register token for some reason...:" + data);
+              });
+
 
             }
             break;
@@ -388,8 +393,7 @@ $ionicLoading.hide();
 
       // destroy your existance
       localStorage.removeItem('identity');
-      $location.path('/login');
-      location.reload();
+      navigator.app.exitApp();
     }
 
   });
