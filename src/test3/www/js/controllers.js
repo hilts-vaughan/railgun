@@ -64,10 +64,14 @@ app.factory('PushProcessingService', function($http, config) {
 
 
 
-app.controller('IndexController', function($scope, $cordovaPush, $ionicPlatform, config, PushProcessingService, $http, $interval) {
+app.controller('IndexController', function($scope, $cordovaPush, $ionicPlatform, config, PushProcessingService, $http, $interval, $ionicScrollDelegate) {
 
 
-
+  // Force all pages upwards when changing states
+  $scope.$on('$stateChangeSuccess',
+    function(event){
+      $ionicScrollDelegate.scrollTop();
+  });
 
   $scope.$on('notification', function(event, args) {
 
