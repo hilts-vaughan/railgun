@@ -10,9 +10,14 @@
 	max-width:100%;
 }
 
-/* Keeps titles in the center */
+/* Keeps titles in the centre */
 .title {
   text-align: center
+}
+
+/* Keeps text in the centre */
+#sidePadding{
+padding-left:3%;padding-right:3%;
 }
 
 /* Style text for author field */
