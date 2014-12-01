@@ -31,24 +31,19 @@
 
  */
 
-// Imports
+// All general server API imports
 var restify = require('restify');
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
-
 var autoIncrement = require('mongoose-auto-increment');
-
 var path = require('path')
 
 
-
+// Allow CORS so that cross network requests can be made
 restify.CORS.ALLOW_HEADERS.push('auth');
 
 
 var server = restify.createServer();
-
-
 
 // Setup some basic plugins and parsers for the restify server
 server
@@ -59,12 +54,10 @@ server
   .use(restify.authorizationParser());
 
 
+// Setup Mongoose
 var dbConnection = mongoose.connect('mongodb://localhost/test');
-
-// Ensure everything gets a unique incremented ID, like an old fashioned relational database
 autoIncrement.initialize(dbConnection);
 mongoose.plugin(autoIncrement.plugin);
-
 
 
 // Attach mongoose onto the requests for usage
@@ -74,18 +67,18 @@ server.use(function(req, res, next){
 })
 
 
-
-
-// Setup all the routes
+// Setup all the routes using a recursive directory read and requiring all the routes; causing their callbacks to be triggered
 var normalizedPath = path.join(__dirname, "routes");
 require("fs").readdirSync(normalizedPath).forEach(function(file) {
   require("./routes/" + file)(server);
 });
 
+// Start up the transit system
 var QuestionTransitController = require('./system/questionTransitController');
 server.transit =  QuestionTransitController;
 
-// Finally, begin listening.
+
+// Finally, begin listening... app OK to start!
 server.listen(8080, function() {
   console.log('%s listening at %s and open for connections.', "Help Me! Laurier", server.url);
 });

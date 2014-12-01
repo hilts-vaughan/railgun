@@ -1,21 +1,12 @@
 /*Title: Boot*/
 /*Date:December 1 2014*/
 /*Authors:Colin Gidzinski, Brandon Smith, Vaughan Hilts*/
-/*Method:Connect the controllers to there 
+/*Method:Connect the controllers to there
 pages and starts the app on a default page*/
 
 //App Declaration
 var app = angular.module('myApp', ['ionic', 'ngCordova']);
 
-app.filter ('scoreFilter', function() {
-  return function(input) {
-    var sign = '+';
-    if(input < 1)
-      sign = '';
-
-    return sign + input;
-  };
-})
 
 //Decalaration of identity in local storage
   app.run(function($http) {
@@ -44,61 +35,61 @@ app.filter ('scoreFilter', function() {
           url: '/eula',
           templateUrl: 'eula.html'
       })
-	  
+
 //About Page
       .state('about', {
           url: '/about',
           templateUrl: 'about.html'
       })
-	  
+
 //Alerts/Notifications Page
       .state('alerts', {
           url: '/alerts',
           templateUrl: 'alerts.html',
           controller: "AlertController"
       })
-	  
+
 //Login Page
       .state('login', {
           url: '/login',
           templateUrl: 'login.html',
           controller: 'LoginController'
       })
-	  
+
 //Help Page
       .state('help', {
           url: '/help',
           templateUrl: 'help.html'
       })
-	  
+
 //Page for posting New Items
       .state('post', {
           url: '/post/:id',
           templateUrl: 'post.html',
           controller: "PostItem"
       })
-	  
+
 //Page for viewing the list of Topics
       .state('topiclist', {
           url: '/topiclist/:id',
           templateUrl: 'topiclist.html',
           controller: "TopicList"
       })
-	  
+
 //Page for replying to a Post
       .state('reply', {
           url: '/reply/:id/:title',
           templateUrl: 'reply.html',
           controller: "ReplyItem"
       })
-	  
+
 //Page for viewing the list of Posts
       .state('postlist', {
           url: '/postlist/:id',
           templateUrl: 'postlist.html',
           controller: "PostList"
       })
-	  
+
 //Profile Page
       .state('profile', {
           url: '/profile',
