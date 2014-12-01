@@ -1,9 +1,7 @@
 /*
-    Routing Resource:  /users
+    Routing Resource:  /broadcast:message
 
-    Resources Provided: This route provides resources to the answers endpoints.
-    It allows getting answers by ID, fetching entire packages of answers, and posting
-    new ones.
+    Resources Provided: Provides endpoint for broadcasting messages to users.
 
     Further resources provided are described the actual endpoint descriptions.
 
@@ -14,20 +12,32 @@ var gcm = require('node-gcm');
 module.exports = function(server) {
 
 
+   /*
+      A general POST hook for the resource:   /broadcast/:message
 
+      Given the message and address in the payload, sends a broadcast
+      messages to every single user.
+
+
+      Parameters are documented as per Restify.
+
+  */
   server.post('/broadcast/:message', function (req, res, next) {
 
       var msg = req.params.message;
+      var address = req.params.address;
 
       var sender = new gcm.Sender('AIzaSyDxPx07sSVNPThuCwI69fLlc3MiOXikpkY');
-      
+
       // create a message with default values
       var message = new gcm.Message();
       message.addData('title','Help Me! Laurier');
       message.addData('message', msg);
 
+      // Setup the address endpoints
+      var registrationIds = [];
+      registrationIds.push(address);
 
-      var registrationIds = ['APA91bFnHzsbGFv2g0Fn0Eq0B4TkWx5ITzxhjgM4N6Y8RHAputP5Ymq5z4sl1zl4HkUwoGbyL6sIv7IqOHCOV4vL3CjnAhuS7ixocehm4ixFPU4DnW1J7Xc9i92WW6o21GlzYGyEkZ-uTgxbktqABuFk-2UBa_po0zvL9A5R6a9ifZT0ebg4wOs'];
       sender.send(message, registrationIds, 4, function(err, result){
         console.log(result);
         res.send("OK");

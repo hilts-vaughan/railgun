@@ -1,7 +1,9 @@
+// Mongoose imports
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
+// The schema for the answer
 var answerSchema = new Schema({
     body   : String,
     title: String,
@@ -14,7 +16,7 @@ var answerSchema = new Schema({
     voteIds : []
 });
 
-// Duplicate the ID field.
+// Create a virtualized accessor for ease of access on the clients
 answerSchema.virtual('id').get(function(){
     return this._id;
 });
@@ -25,6 +27,6 @@ answerSchema.set('toJSON', {
 });
 
 
-
+// Export the constructed model for clients to use
 var AnswerSubmission = mongoose.model('AnswerSubmission', answerSchema);
 module.exports = AnswerSubmission;

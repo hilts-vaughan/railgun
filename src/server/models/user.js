@@ -8,7 +8,7 @@ var userSchema = new Schema({
     pushToken : String
 });
 
-// Duplicate the ID field.
+// Create a virtualized accessor for ease of access on the clients
 userSchema.virtual('id').get(function(){
     return this._id;
 });
@@ -19,6 +19,6 @@ userSchema.set('toJSON', {
 });
 
 
-
+// Export the constructed model for clients to use
 var User = mongoose.model('User', userSchema);
 module.exports = User;

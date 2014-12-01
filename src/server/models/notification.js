@@ -13,7 +13,7 @@ var notificationSchema = new Schema({
 
 });
 
-// Duplicate the ID field.
+// Create a virtualized accessor for ease of access on the clients
 notificationSchema.virtual('id').get(function(){
     return this._id;
 });
@@ -24,6 +24,6 @@ notificationSchema.set('toJSON', {
 });
 
 
-
+// Export the constructed model for clients to use
 var Notification = mongoose.model('Notification', notificationSchema);
 module.exports = Notification;

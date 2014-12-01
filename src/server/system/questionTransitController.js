@@ -2,7 +2,7 @@
 	The question transit controller is responsible for managing the transmission of all the various notifications that need to be placed.
  */
 
-
+// Imports required for this class
 var NotificationController = require('./notificationController')
 var User = require('./../models/user');
 var mongoose = require('mongoose');
@@ -13,7 +13,9 @@ module.exports = {
 
 	/*
 		Takes a new question has been sent from another source and requests a processing.
-		@param	question 	The new question that needs to be processed
+		@param	question 	The new question that needs to be processed or answer.
+											In all cases, the question is the initial tied element.
+
 	 */
 	processNewSubmission: function processNewSubmission(question, type, id) {
 
@@ -21,7 +23,7 @@ module.exports = {
 
 			var controller = NotificationController;
 
-			console.log("Searching users...");
+			console.log("Preparing to send a notification because of changes...");
 
 			var sendList = [];
 			var notifyList = [];
@@ -40,19 +42,15 @@ module.exports = {
 				userNotification.ownerId = user._id;
 				userNotification.type = type;
 				userNotification.read = 0;
-
 				userNotification.submissionId = id;
 
 				userNotification.save();
-
-				console.log("Token " + token + " is getting a notification.");
-				console.log(controller);
 				controller.sendNotification(userNotification, token);
 
 
 			});
 
-			// Now, send to the controller this submission to all users that are active
+
 
 		});
 

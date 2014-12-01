@@ -15,7 +15,7 @@ var questionSchema = new Schema({
 });
 
 
-// Duplicate the ID field.
+// Create a virtualized accessor for ease of access on the clients
 questionSchema.virtual('id').get(function(){
     return this._id;
 });
@@ -25,6 +25,6 @@ questionSchema.set('toJSON', {
     virtuals: true
 });
 
-
+// Export the constructed model for clients to use
 var QuestionSubmission = mongoose.model('QuestionSubmission', questionSchema);
 module.exports = QuestionSubmission;
