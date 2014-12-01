@@ -7,6 +7,16 @@ pages and starts the app on a default page*/
 //App Declaration
 var app = angular.module('myApp', ['ionic', 'ngCordova']);
 
+app.filter ('scoreFilter', function() {
+  return function(input) {
+    var sign = '+';
+    if(input < 1)
+      sign = '';
+
+    return sign + input;
+  };
+})
+
 //Decalaration of identity in local storage
   app.run(function($http) {
       $http.defaults.headers.common['auth'] = localStorage['identity'];
