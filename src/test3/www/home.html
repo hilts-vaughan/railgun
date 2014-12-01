@@ -1,5 +1,9 @@
-<!-- Brandon Smith did did state connection for toggle buttons-->
-<!-- Ask/Reply Selection Section  -->
+<!--Title: Home Page Section  -->
+<!--Date: 01/12/2014-->
+<!--Authors: Brandon Smith-->
+<!--Input: -->
+<!--Output: -->
+<!--Method:-->
 <!--This places the ask question button in an ideal locaiton -->
 <div class="col col-80 col-offset-10"><button class="button button-full button-positive" ui-sref="post({id:data.category})">Ask Question</button></div>
 <!-- this places the View question button below the ask question button with a bit of white space inbetween-->
@@ -15,6 +19,7 @@
       <ul>
          <!--This creates 5 radio buttons for use in selecting which category you wish to view for both questions or answers -->
          <!-- It defaults to academic-->
+         <!-- x refers to the location in our index-->
          <ion-radio  ng-repeat="x in names" ng-model="data.category" ng-value="$index">{{x}}</ion-radio>
       </ul>
    </div>

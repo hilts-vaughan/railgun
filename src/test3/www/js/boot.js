@@ -1,3 +1,9 @@
+/*Title: Boot*/
+/*Date:December 1 2014*/
+/*Authors:Colin Gidzinski, Brandon Smith, Vaughan Hilts*/
+/*Method:Connect the controllers to there 
+pages and starts the app on a default page*/
+
 //App Declaration
 var app = angular.module('myApp', ['ionic', 'ngCordova']);
 

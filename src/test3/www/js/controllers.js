@@ -1,3 +1,10 @@
+/*Title: Controllers*/
+/*Date:December 1 2014*/
+/*Authors:Colin Gidzinski, Vaughan Hilts*/
+/*Method:Takes infomation from each page and communicates
+with the server to handle tasks*/
+
+
 app.factory('PushProcessingService', function($http, config) {
     function onDeviceReady() {
         console.info('NOTIFY  Device is ready.  Registering with GCM server');
