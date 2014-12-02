@@ -15,7 +15,7 @@ var app = angular.module('myApp', ['ionic', 'ngCordova']);
 
 //Constant declaration of server address
   app.value('config', {
-      serverUrl: 'http://localhost:8080/'
+      serverUrl: 'http://104.236.62.77:8080/'
   });
 
 //Routing table
