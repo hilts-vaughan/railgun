@@ -1,9 +1,8 @@
 /*
     Routing Resource:  /users
 
-    Resources Provided: This route provides resources to the answers endpoints.
-    It allows getting answers by ID, fetching entire packages of answers, and posting
-    new ones.
+    Resources Provided: This route provides resources to the users endpoints.
+
 
     Further resources provided are described the actual endpoint descriptions.
 
@@ -14,6 +13,9 @@ module.exports = function(server) {
 
 
 
+    /*
+        Given the identity, registers the identity on the server and creates them.
+    */
   server.get('/login/:identity', function (req, res, next) {
 
       // We have a request to create a new users

@@ -10,17 +10,20 @@
 
 */
 
+// Model imports
 var QuestionSubmission = require('./../models/question');
 var AnswerSubmission = require('./../models/answer');
 
+    /*
+        Fetches a list of all questions according to the given
+        filters.
+    */
 module.exports = function(server) {
 
   server.get('/submissions/questions', function (req, res, next) {
 
+      // Generates a filter for the questions
       var filter = {};
-
-
-
       for(var k in req.query)
         filter[k] = req.query[k];
 
@@ -37,6 +40,9 @@ module.exports = function(server) {
 
   });
 
+    /*
+        Gets detailed information about a question with the given ID
+    */
   server.get('/submissions/questions/:id', function (req, res, next) {
 
 
@@ -68,7 +74,10 @@ module.exports = function(server) {
   }); // end /submissions/questions/:id
 
 
-
+    /*
+        Given the question payload, attempts to POST a generated
+        question to the server for serving.
+    */
   server.post('/submissions/questions', function (req, res, next) {
 
       // Uses the Mongoose DB connection to find it

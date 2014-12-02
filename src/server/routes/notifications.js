@@ -1,6 +1,7 @@
 /*
-    Routing Resource:  /submissions/answers
-                       /submissions/answers/:id
+    Routing Resource:  /notifications/register
+                       /notifications/:id
+                       /notifications/
 
     Resources Provided: This route provides resources to the answers endpoints.
     It allows getting answers by ID, fetching entire packages of answers, and posting
@@ -19,7 +20,11 @@ var _ = require('underscore');
 module.exports = function(server) {
 
 
-
+     /*
+        Takes the token payload and registers a device with the user server
+        with the given identity on the request. Using this, registers with
+        the GCM server.
+    */
   server.post('/notifications/register', function (req, res, next) {
 
         var identity = req.headers['auth'];
@@ -44,6 +49,10 @@ module.exports = function(server) {
   });
 
 
+    /*
+        Fetches all the notifications for the given identity that is authorized
+        Returns an array of model objects.
+    */
   server.get('/notifications', function (req, res, next) {
 
     var identity = req.headers['auth'];
@@ -71,7 +80,9 @@ module.exports = function(server) {
 
   });
 
-
+    /*
+        Given an Id of a notification, marks the notification as read.
+    */
   server.get('/notifications/:id', function (req, res, next) {
 
     var id = req.params.id;

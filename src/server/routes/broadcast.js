@@ -16,7 +16,7 @@ module.exports = function(server) {
       A general POST hook for the resource:   /broadcast/:message
 
       Given the message and address in the payload, sends a broadcast
-      messages to every single user.
+      messages to every user within the address.
 
 
       Parameters are documented as per Restify.

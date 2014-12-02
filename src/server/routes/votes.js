@@ -1,6 +1,6 @@
 /*
     Routing Resource:
-                       /votes/answers/:id
+                       /votes/:id
 
     Resources Provided: This route provides resources to the votes endpoints.
 
@@ -15,12 +15,12 @@ module.exports = function(server) {
 
 
   /*
-      Purpose: Provides a set of reports pulled down from the active database that are accomapnied to a certain question type.
+      Purpose: Provides a set of votes on a specific piece of content
 
       Notes:   Resources provided
   */
   server.post('/votes/:id', function (req, res, next) {
-      
+
     var id = req.params.id;
     var isUpvote = req.params.isUpvote
     var identity = req.headers['auth'];
@@ -34,9 +34,9 @@ module.exports = function(server) {
 
           if(submission && submission.voteIds.indexOf(identity) == -1) {
               User.find({name: identity}, function(exception, x) {
-                
+
                 // Take the submission we have found and increase the score
-                
+
                 if(isUpvote)
                   submission.score++;
                 else
@@ -59,7 +59,7 @@ module.exports = function(server) {
           } else {
               res.send({status: false});
           }
-        
+
 
       });
 
