@@ -15,7 +15,7 @@
    </div>
    <!--print the list using the current notifications to the screen -->
    <ul>
-      <a class="item item-text-wrap" ng-hide="type != notification.type" ng-click="markNotification(notification._id, notification.submissionId)" ng-repeat="notification in notifications">
+      <a class="item item-text-wrap" ng-hide="type != notification.type" ng-click="markNotification(notification._id, notification.submissionId)" ng-repeat="notification in notifications | toArray | orderBy:'date':reverse=true" >
          <!--x is the current value -->
          {{x}}
          <!--This places the title of notification in the screen -->

@@ -35,7 +35,7 @@
 </div>
 </div>
 <!-- Answer Card Section  -->
-<div class="card" ng-repeat="answer in names.answers">
+<div class="card" ng-repeat="answer in names.answers | toArray | orderBy:'score':reverse=true">
    <div class="item item-divider">
       <!-- This puts the answer in the left side of the tobbox-->
       <span class="left">{{answer.title}}</span>
